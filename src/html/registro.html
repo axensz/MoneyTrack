@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoneyTrack - Registrarme</title>
+  <link rel="stylesheet" href="/src/styles/registro.css">
+  <script src="js/script.js"></script>
+</head>
+<body>
+
+    <!-- Flecha de regreso -->
+    <a href="login.html" class="back-arrow">&#8592;</a>
+    
+  <!-- Contenedor principal -->
+  <div class="container">
+    
+    <!-- Título -->
+    <h1 class="title">Registrarme</h1>
+
+    <!-- Formulario de registro -->
+    <form class="register-form">
+      
+      <!-- Campo de Nombre -->
+      <input type="text" placeholder="Nombre" required>
+
+      <!-- Campo de Correo Electrónico -->
+      <input type="email" placeholder="Correo Electrónico" required>
+
+      <!-- Campo de Contraseña -->
+      <input type="password" placeholder="Contraseña" required>
+
+      <!-- Pregunta de seguridad (Select Box) -->
+      <select required>
+        <option value="" disabled selected>Selecciona una pregunta de seguridad</option>
+        <option value="1">¿Cuál es el nombre de tu mascota?</option>
+        <option value="2">¿Cuál es tu ciudad de nacimiento?</option>
+        <option value="3">¿Cuál es tu comida favorita?</option>
+        <option value="4">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+      </select>
+
+      <!-- Respuesta a la pregunta de seguridad -->
+      <input type="text" placeholder="Respuesta a la pregunta de seguridad" required>
+
+      <!-- Botón de Registrarme -->
+      <button type="submit">Registrarme</button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

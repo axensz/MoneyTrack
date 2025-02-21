@@ -19,12 +19,13 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 150px; /* Espacio debajo del logo */
+    margin-bottom: 50px; /* Espacio debajo del logo reducido */
 }
 
 /* Logo */
 .logo {
-    width: 1500px; /* Tamaño grande */
+    width: 100%; /* Tamaño relativo al ancho de la pantalla */
+    max-width: 800px; /* Máximo tamaño para pantallas grandes */
     height: auto;
 }
 
@@ -33,20 +34,20 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 600px; /* Controla el ancho del formulario */
-    padding: 30px;
+    width: 90%; /* Ancho relativo */
+    max-width: 400px; /* Máximo ancho para pantallas grandes */
+    padding: 20px;
 }
 
 /* Grupo de entrada */
 .input-group {
     width: 100%;
-    margin-bottom: 90px; /* Más espacio entre campos */
+    margin-bottom: 30px; /* Espacio entre campos reducido */
 }
 
 .input-label {
     display: block;
-    font-size: 80px; /* Texto más grande */
+    font-size: 18px; /* Texto más pequeño */
     color: #333333;
     margin-bottom: 10px;
 }
@@ -62,13 +63,13 @@ html, body {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 25px; /* Texto más grande */
+    font-size: 16px; /* Texto más pequeño */
     padding: 10px 0;
     background-color: transparent;
 }
 
 .input-icon {
-    width: 50px;
+    width: 24px; /* Icono más pequeño */
     height: auto;
     margin-left: 10px;
     margin-right: 10px;
@@ -79,9 +80,9 @@ html, body {
 .forgot-password {
     display: block;
     text-align: right; /* Alineado a la derecha */
-    font-size: 30px;
+    font-size: 14px; /* Texto más pequeño */
     color: #000000;
-    margin-top: 40px;
+    margin-top: 20px; /* Espacio reducido */
     cursor: pointer;
 }
 
@@ -91,19 +92,19 @@ html, body {
 
 /* Grupo de botones */
 .button-group {
-    width: 60%;
-    margin-top: 150px; /* Espacio antes de los botones */
+    width: 40%; /* Ancho completo */
+    margin-top: 50px; /* Espacio reducido */
 }
 
 .btn {
     width: 100%;
-    padding: 30px;
-    font-size: 25px;
+    padding: 15px; /* Padding reducido */
+    font-size: 18px; /* Texto más pequeño */
     font-weight: 100;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 45px; /* Espacio entre botones */
+    margin-bottom: 20px; /* Espacio entre botones reducido */
 }
 
 .btn-primary {
@@ -122,4 +123,28 @@ html, body {
 
 .btn-secondary:hover {
     background-color: #5a6268;
+}
+
+/* Media Queries para iPhone 14 y 14 Pro */
+@media only screen and (max-width: 390px) {
+    .logo {
+        width: 70%; /* Logo más pequeño en pantallas pequeñas */
+    }
+
+    .input-label {
+        font-size: 16px; /* Texto más pequeño */
+    }
+
+    .input-line input {
+        font-size: 14px; /* Texto más pequeño */
+    }
+
+    .forgot-password {
+        font-size: 12px; /* Texto más pequeño */
+    }
+
+    .btn {
+        font-size: 16px; /* Texto más pequeño */
+        padding: 12px; /* Padding reducido */
+    }
 }
