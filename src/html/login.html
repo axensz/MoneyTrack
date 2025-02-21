@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoneyTrack - Login</title>
-  <link rel="stylesheet" href="/src/styles/login.css"> <!-- Asegúrate de que la ruta es correcta -->
+  <link rel="stylesheet" href="/src/styles/login.css">
+  <script src="js/script.js"></script>
 </head>
 <body>
 
@@ -30,7 +31,9 @@
         <img src="/src/assets/key.svg" alt="Key Icon" class="input-icon">
         <input type="password" placeholder="Contraseña">
       </div>
-      <span class="forgot-password">Recuperar contraseña</span> <!-- Nuevo elemento -->
+      <span class="forgot-password" onclick="window.location.href='OlvidasteContra.html'">
+        Restablecer tu contraseña
+      </span>
     </div>
 
     <!-- Botones -->

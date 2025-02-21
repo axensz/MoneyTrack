@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olvidaste Contraseña</title>
     <link rel="stylesheet" href="OlvidasteContra-Style.css">
+    <script src="js/script.js"></script>
 </head>
 <body>
     
     <div class="form-container">
     
         <!-- Campo de Usuario -->
-        <button class="Volver"></button>
+        <button class="Volver" onclick="window.location.href='login.html'"></button>
         <div class="texto1">
             <h3>¿Olvidaste tu contraseña?</h3>
             <p>Responde la pregunta de seguridad</p>
         </div>
         <div class="input">
             <input type="text" placeholder="Nombre de tu perro"><br>
-            <button>Verificar</button>
+            <button id="miBoton" onclick="deshabilitarBoton()">Verificar</button>
+            <p id="mensaje"></p>
         </div>
         </div>
 
