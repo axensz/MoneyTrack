@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olvidaste Contraseña</title>
-    <link rel="stylesheet" href="OlvidasteContra-Style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="/src/styles/OlvidasteContra-Style.css">
+    <script src="js/main.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <button class="Volver" onclick="window.location.href='login.html'"></button>
+        <!-- Texto -->
         <div class="texto1">
             <h3>Olvidaste tu contraseña?</h3>
             <p>Coloca tu Usuario</p>
         </div>
-        <div class="input">
-            <input type="text" placeholder="Usuario">
-            <button class="Boton-RecuperaraContra" onclick="window.location.href='OlvidasteContra2.html'">Enviar</button>
+        <!-- Input -->
+        <div class="input-group">
+            <div class="input-line">
+              <img src="/src/assets/user.svg" alt="User Icon" class="input-icon">
+              <input type="text" placeholder="Usuario">
+            </div>
+            <div class="input">
+                <button class="Boton-RecuperaraContra" onclick="window.location.href='OlvidasteContra2.html'">Enviar</button>
+            </div>
         </div>
     </div>
 </body>
 </html>
-
-<script>
-    setTimeout(() => {
-      window.location.href = "about.html"; // Cambia "about.html" por la página a la que quieres ir
-    }, 5000); // 5000 milisegundos = 5 segundos
-  </script>

@@ -66,7 +66,7 @@ html, body {
     margin-top: 150px; /* Espacio antes de los botones */
 }
 
-.Boton-RecuperaraContra {
+.BotonVerificar {
     width: 100%;
     padding: 15px;
     font-size: 25px;
@@ -74,11 +74,12 @@ html, body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    margin-bottom: 45px; /* Espacio entre botones */
 
     background-color: #978da2;
     color: #000000;
 }
 
-.Boton-RecuperaraContra:hover {
+.BotonVerificar:hover {
     background-color: #646464;
 }

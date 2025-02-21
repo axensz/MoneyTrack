@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olvidaste Contraseña</title>
-    <link rel="stylesheet" href="OlvidasteContra-Style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="/src/styles/OlvidasteContra2-Style.css">
+    <script src="/src/js/main.js"></script>
 </head>
 <body>
     
@@ -13,15 +13,23 @@
     
         <!-- Campo de Usuario -->
         <button class="Volver" onclick="window.location.href='login.html'"></button>
+        <!-- Texto -->
         <div class="texto1">
             <h3>¿Olvidaste tu contraseña?</h3>
             <p>Responde la pregunta de seguridad</p>
         </div>
-        <div class="input">
-            <input type="text" placeholder="Nombre de tu perro"><br>
-            <button id="miBoton" onclick="deshabilitarBoton()">Verificar</button>
-            <p id="mensaje"></p>
-        </div>
+
+        <!--Formulario Recuperar Contraseña-->
+        <div class="input-group">
+            <div class="input-line">
+              <img src="/src/assets/key.svg" alt="Key Icon" class="input-icon">
+              <input type="text" placeholder="Nombre de tu Perro">
+            </div>
+            <div class="input">
+                <button class="BotonVerificar" onclick="deshabilitarBoton()">Verificar</button>
+                <p class="Contrasena"></p>
+            </div>
+            
         </div>
 
     </div>    
