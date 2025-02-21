@@ -1,0 +1,40 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Asegura que el logo y el loader se alineen en columna */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Estilos del logo */
+.logo {
+  width: 250%; /* Ajusta el tamaño para evitar que ocupe toda la pantalla */
+  height: auto;
+  margin-bottom: 100px; /* Espacio entre el logo y el loader */
+}
+
+/* Loader animado */
+.loader {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(0, 0, 0, 0.1); /* Borde gris claro */
+  border-top: 4px solid #000000; /* Borde azul animado */
+  border-radius: 50%; /* Hace que el loader sea circular */
+  animation: spin 1s linear infinite; /* Animación de rotación */
+}
+
+/* Animación del loader */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
