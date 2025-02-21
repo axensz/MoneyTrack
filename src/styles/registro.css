@@ -8,39 +8,42 @@ html, body {
     align-items: center;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Evita el desbordamiento */
+    overflow: hidden;
 }
 
 /* Contenedor principal */
 .container {
-    width: 90%; /* Ancho relativo */
-    max-width: 385px; /* Máximo ancho para pantallas grandes */
+    width: 90%;
+    max-width: 385px;
     height: 100%;
     max-height: 100%;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     position: relative;
-    overflow: hidden; /* Evita el desbordamiento */
+    overflow: hidden;
     margin-top: 200px;
 }
 
 /* Flecha de regreso */
 .back-arrow {
     position: absolute;
-    top: 10px; /* Sube más la flecha */
-    left: 10px; /* Ajuste opcional para que no quede pegada al borde */
-    font-size: 24px;
+    top: 10px;
+    left: 15px;
+    width: 24px; /* Ajusta según el tamaño de tu SVG */
+    height: 24px;
+    margin-top: 15px;
+    background: url('/img/arrow.svg') no-repeat center;
+    background-size: contain;
     text-decoration: none;
-    color: #333;
-    padding: 5px; /* Reduce el padding para mayor precisión */
+    display: block;
 }
-
 
 /* Título */
 .title {
     margin-bottom: 20px;
-    font-size: 24px; /* Tamaño reducido */
+    font-size: 24px;
+    text-align: left;
 }
 
 /* Formulario */
@@ -49,62 +52,94 @@ html, body {
     flex-direction: column;
     gap: 50px;
     margin-top: 60px;
+    align-items: center; /* Centrar elementos */
 }
 
 /* Inputs y Select con estilo de línea inferior */
 .register-form input,
 .register-form select {
     width: 100%;
-    padding: 10px 0; /* Ajuste de padding */
+    padding: 10px 0;
     border: none;
-    border-bottom: 2px solid #5f5f5f; /* Solo línea inferior */
+    border-bottom: 2px solid #5f5f5f;
     font-size: 16px;
     background-color: transparent;
     outline: none;
     box-sizing: border-box;
 }
 
+/* Estilizar el Select con flecha personalizada */
+.register-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #d2d1d140 url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M7 10l5 5 5-5H7z"/></svg>') no-repeat right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+    border-bottom: none; /* Eliminar la línea inferior */
+    margin-bottom: -3rem; /* Reducir espacio con el siguiente input de forma adaptable */
+    margin-top: -0.2rem; /* Reducir espacio con el siguiente input de forma adaptable */
+    cursor: pointer;
+    white-space: normal;
+    word-wrap: break-word;
+    
+}
+
+
+/* Estilo para hover y selección en algunas versiones de navegadores */
+.register-form select option:hover,
+.register-form select option:checked {
+    background: #5e5a6f; /* Color de fondo al seleccionar */
+    color: #ffffff; /* Color del texto */
+}
+
 /* Botón */
 .register-form button {
-    background: #978da2;
-    color: #000000;
-    padding: 12px; /* Padding reducido */
+    width: 80%; /* Ancho responsivo */
+    max-width: 250px; /* Límite para pantallas grandes */
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 100;
     border: none;
     border-radius: 8px;
-    font-size: 18px; /* Tamaño reducido */
     cursor: pointer;
-    box-sizing: border-box; /* Evita desbordamiento */
+    background-color: #978da2;
+    color: #000000;
+    margin: 20px auto 0 auto; /* Centrar el botón */
+    display: block;
 }
 
 .register-form button:hover {
-    background: #080808(23, 63, 90);
+    background: #5e5a6f;
 }
 
 /* Media Queries para iPhone 14 y 14 Pro */
 @media only screen and (max-width: 390px) {
     .container {
-        width: 95%; /* Más ancho en pantallas pequeñas */
+        width: 95%;
         padding: 15px;
         max-height: 100%;
         height: 100%;
     }
 
     .back-arrow {
-        font-size: 20px; /* Tamaño más pequeño */
+        font-size: 20px;
     }
 
     .title {
-        font-size: 22px; /* Tamaño más pequeño */
+        font-size: 22px;
     }
 
     .register-form input,
     .register-form select,
     .register-form button {
-        font-size: 14px; /* Tamaño más pequeño */
-        padding: 10px; /* Padding reducido */
+        font-size: 14px;
+        padding: 10px;
     }
 
     .register-form button {
-        font-size: 16px; /* Tamaño más pequeño */
+        width: 90%; /* Más ancho en dispositivos pequeños */
+        max-width: 200px;
+        font-size: 16px;
     }
 }
