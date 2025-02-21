@@ -19,7 +19,7 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 50px; /* Espacio debajo del logo */
+    margin-bottom: 150px; /* Espacio debajo del logo */
 }
 
 /* Logo */
@@ -41,12 +41,12 @@ html, body {
 /* Grupo de entrada */
 .input-group {
     width: 100%;
-    margin-bottom: 25px; /* Más espacio entre campos */
+    margin-bottom: 90px; /* Más espacio entre campos */
 }
 
 .input-label {
     display: block;
-    font-size: 20px; /* Texto más grande */
+    font-size: 80px; /* Texto más grande */
     color: #333333;
     margin-bottom: 10px;
 }
@@ -62,25 +62,26 @@ html, body {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 18px; /* Texto más grande */
+    font-size: 25px; /* Texto más grande */
     padding: 10px 0;
     background-color: transparent;
 }
 
 .input-icon {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: auto;
     margin-left: 10px;
     margin-right: 10px;
+    color: #000000;
 }
 
 /* Restablecer contraseña */
 .forgot-password {
     display: block;
     text-align: right; /* Alineado a la derecha */
-    font-size: 20px;
+    font-size: 30px;
     color: #000000;
-    margin-top: 8px;
+    margin-top: 40px;
     cursor: pointer;
 }
 
@@ -90,24 +91,24 @@ html, body {
 
 /* Grupo de botones */
 .button-group {
-    width: 40%;
+    width: 60%;
     margin-top: 150px; /* Espacio antes de los botones */
 }
 
 .btn {
     width: 100%;
-    padding: 16px;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 30px;
+    font-size: 25px;
+    font-weight: 100;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 25px; /* Espacio entre botones */
+    margin-bottom: 45px; /* Espacio entre botones */
 }
 
 .btn-primary {
-    background-color: #373738;
-    color: #ffffff;
+    background-color: #978da2;
+    color: #000000;
 }
 
 .btn-primary:hover {
@@ -115,8 +116,8 @@ html, body {
 }
 
 .btn-secondary {
-    background-color: #6c757d;
-    color: #ffffff;
+    background-color: #D9D9D9;
+    color: #000000;
 }
 
 .btn-secondary:hover {
