@@ -11,6 +11,7 @@ html, body {
     overflow: hidden;
 }
 
+/* Contenedor principal */
 .form-container {
     width: 90%;
     max-width: 385px;
@@ -23,85 +24,84 @@ html, body {
     margin-top: 200px;
 }
 
-.texto1 {
-    font-size: 17px; /* Texto más grande */
-    color: #000000;
-    margin:0px;
-    align-content: start;
-    border: 1px solid #000000;
-    
+/* Flecha de regreso */
+.back-arrow {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 24px; /* Ajusta según el tamaño de tu SVG */
+    height: 24px;
+    margin-top: 15px;
+    background: url('/img/arrow.svg') no-repeat center;
+    background-size: contain;
+    text-decoration: none;
+    display: block;
 }
 
+/* Ícono de entrada */
 .input-icon {
-    width: 10px; /* Icono más pequeño */
+    width: 40px;
     height: auto;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px;
     color: #000000;
 }
 
 /* Grupo de entrada */
 .input-group {
     width: 100%;
-    margin-bottom: 90px; /* Más espacio entre campos */
+    margin-bottom: 90px;
 }
 
+/* Etiqueta del input */
 .input-label {
     display: block;
-    font-size: 80px; /* Texto más grande */
+    font-size: 80px;
     color: #333333;
     margin-bottom: 10px;
 }
 
+/* Línea de entrada */
 .input-line {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #000000;
     padding-bottom: 10px;
-    margin-top: 200px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 200px 50px 0 50px;
 }
 
+/* Input */
 .input-line input {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 16px; /* Texto más pequeño */
+    font-size: 16px;
     padding: 10px 0;
     background-color: transparent;
 }
 
-.input-icon {
-    width: 50px;
-    height: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #000000;
-}
-
-
 /* Grupo de botones */
 .input {
     width: 40%;
-    margin-top: 50px; /* Espacio antes de los botones */
+    margin-top: 50px;
     justify-content: center;
 }
 
+/* Botón de recuperación */
 .Boton-RecuperaraContra {
-    width: 100%;
-    padding: 10px;
-    font-size: 20px;
+    width: 80%; /* Ancho responsivo */
+    max-width: 250px; /* Límite de ancho */
+    padding: 12px; /* Espaciado similar al otro botón */
+    font-size: 18px;
     font-weight: 100;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #978da2; 
-    justify-content: center;
-    margin-left: 100px;
-    margin-top: 100px;
+    background-color: #978da2;
+    color: #000000;
+    margin: 20px auto 0 auto; /* Centrarlo */
+    display: block;
 }
 
 .Boton-RecuperaraContra:hover {
-    background-color: #646464;
+    background-color: #5e5a6f;
 }

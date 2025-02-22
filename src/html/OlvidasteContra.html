@@ -8,21 +8,32 @@
     <script src="js/main.js"></script>
 </head>
 <body>
+
+
+    <!-- Flecha de regreso -->
+    <a href="login.html" class="back-arrow"></a>
+
+    <!-- Contenedor Principal -->
     <div class="form-container">
-        <button class="Volver" onclick="window.location.href='login.html'"></button>
-        <!-- Texto -->
-            <h3 class="title">¿Olvidaste tu contraseña?</h3>
-            <p>Coloca tu Usuario</p>
-        <!-- Input -->
+    
+        <!-- Título y descripción -->
+        <h3 class="title">¿Olvidaste tu contraseña?</h3>
+        <p>Coloca tu Usuario</p>
+
+        <!-- Grupo de Input -->
         <div class="input-group">
             <div class="input-line">
-              <img src="/src/assets/user.svg" alt="User Icon" class="input-icon">
-              <input type="text" placeholder="Usuario">
+                <img src="/src/assets/user.svg" alt="User Icon" class="input-icon">
+                <input type="text" placeholder="Usuario">
             </div>
-            <div class="input">
-                <button class="Boton-RecuperaraContra" onclick="window.location.href='OlvidasteContra2.html'">Enviar</button>
-            </div>
+
+            <!-- Botón de Enviar -->
+            <button class="Boton-RecuperaraContra" onclick="window.location.href='OlvidasteContra2.html'">
+                Enviar
+            </button>
         </div>
+
     </div>
+
 </body>
 </html>

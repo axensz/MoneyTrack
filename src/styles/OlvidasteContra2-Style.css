@@ -1,85 +1,175 @@
-/* Estilos generales */
+/* Reset básico */
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family:sans-serif;
     display: flex;
-    flex-direction: column; /* Alineación vertical */
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
     overflow: hidden;
 }
 
+/* Contenedor principal */
 .form-container {
+    width: 90%;
+    max-width: 385px;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 600px; /* Controla el ancho del formulario */
-    padding: 30px;
+    justify-content: center;
+}
+
+/* Flecha de regreso */
+.back-arrow {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    background: url('/img/arrow.svg') no-repeat center;
+    background-size: contain;
+    text-decoration: none;
+    display: block;
+}
+
+/* Ícono de entrada */
+.input-icon {
+    width: 40px;
+    height: auto;
+    margin: 0 10px;
+    color: #000000;
 }
 
 /* Grupo de entrada */
 .input-group {
     width: 100%;
-    margin-bottom: 90px; /* Más espacio entre campos */
+    margin-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.input-label {
-    display: block;
-    font-size: 80px; /* Texto más grande */
-    color: #333333;
-    margin-bottom: 10px;
-}
-
+/* Línea de entrada */
 .input-line {
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #000000;
+    border-bottom: 1px solid #000000;
     padding-bottom: 10px;
+    width: 80%;
 }
 
+/* Input */
 .input-line input {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 25px; /* Texto más grande */
+    font-size: 16px;
     padding: 10px 0;
     background-color: transparent;
 }
 
-.input-icon {
-    width: 50px;
-    height: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #000000;
-}
-
-
-/* Grupo de botones */
-.input {
-    width: 100%;
-    margin-top: 150px; /* Espacio antes de los botones */
-}
-
+/* Botón de verificación */
 .BotonVerificar {
-    width: 100%;
-    padding: 15px;
-    font-size: 25px;
-    font-weight: 100;
+    width: 80%;
+    max-width: 250px;
+    padding: 12px;
+    font-size: 18px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 45px; /* Espacio entre botones */
-
     background-color: #978da2;
     color: #000000;
+    margin-top: 20px;
 }
 
 .BotonVerificar:hover {
-    background-color: #646464;
+    background-color: #5e5a6f;
+}
+
+/* Texto */
+.title {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+}
+
+/* Media Queries */
+
+/* Pantallas pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+    .form-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .input-line {
+        width: 90%;
+    }
+
+    .BotonVerificar {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+/* Pantallas medianas (tablets: 481px - 768px) */
+@media (max-width: 768px) {
+    .form-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .input-line {
+        width: 85%;
+    }
+
+    .BotonVerificar {
+        width: 85%;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+/* Pantallas grandes (más de 1024px) */
+@media (min-width: 1024px) {
+    .form-container {
+        max-width: 450px;
+    }
+
+    .input-line {
+        width: 70%;
+    }
+
+    .BotonVerificar {
+        width: 70%;
+    }
 }

@@ -78,7 +78,7 @@ html, body {
     padding-right: 30px;
     border-bottom: none; /* Eliminar la línea inferior */
     margin-bottom: -3rem; /* Reducir espacio con el siguiente input de forma adaptable */
-    margin-top: -0.2rem; /* Reducir espacio con el siguiente input de forma adaptable */
+    margin-top: -0.22rem; /* Reducir espacio con el siguiente input de forma adaptable */
     cursor: pointer;
     white-space: normal;
     word-wrap: break-word;

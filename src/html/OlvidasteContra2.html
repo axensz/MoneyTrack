@@ -8,30 +8,31 @@
     <script src="/src/js/main.js"></script>
 </head>
 <body>
-    
+
+    <!-- Flecha de regreso -->
+    <a href="login.html" class="back-arrow"></a>
+
+    <!-- Contenedor Principal -->
     <div class="form-container">
     
-        <!-- Campo de Usuario -->
-        <button class="Volver" onclick="window.location.href='login.html'"></button>
-        <!-- Texto -->
-        <div class="texto1">
-            <h3>¿Olvidaste tu contraseña?</h3>
-            <p>Responde la pregunta de seguridad</p>
-        </div>
+        <!-- Título y descripción -->
+        <h3 class="title">¿Olvidaste tu contraseña?</h3>
+        <p>Responde la pregunta de seguridad</p>
 
-        <!--Formulario Recuperar Contraseña-->
+        <!-- Grupo de Input -->
         <div class="input-group">
             <div class="input-line">
-              <img src="/src/assets/key.svg" alt="Key Icon" class="input-icon">
-              <input type="text" placeholder="Nombre de tu Perro">
+                <img src="/src/assets/key.svg" alt="Key Icon" class="input-icon">
+                <input type="text" placeholder="Nombre de tu Perro">
             </div>
-            <div class="input">
-                <button class="BotonVerificar" onclick="deshabilitarBoton()">Verificar</button>
-                <p class="Contrasena"></p>
-            </div>
-            
-        </div>
 
-    </div>    
+            <!-- Botón de Verificar -->
+            <button class="BotonVerificar" onclick="deshabilitarBoton()">
+                Verificar
+            </button>
+            <p class="Contrasena"></p>
+        </div>
+    </div>
+
 </body>
 </html>
