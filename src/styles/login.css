@@ -6,7 +6,7 @@ html, body {
     padding: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column; /* Alineación vertical */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
@@ -19,7 +19,7 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 50px; /* Espacio debajo del logo reducido */
+    margin-bottom: 50px; 
 }
 
 /* Logo */
