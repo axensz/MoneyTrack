@@ -6,12 +6,12 @@ html, body {
     font-family: Arial, sans-serif;
     display: flex;
     overflow: hidden;
+    background-color: #f8f8f8;
 }
 
 /* Contenedor principal */
 .transactions-container {
     width: 100%;
-    max-width: 400px;
     margin: 20px auto;
     padding: 20px;
     height: 100%;
@@ -24,7 +24,7 @@ html, body {
     font-weight: bold;
     color: #333;
     text-align: left;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 /* Contenedor de los meses */
@@ -32,10 +32,10 @@ html, body {
     display: flex;
     justify-content: space-between;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+    color: white;
+    margin-bottom: 5px;
 }
 
 /* Contenedor de los gastos */
@@ -44,10 +44,24 @@ html, body {
     justify-content: space-between;
     text-align: center;
     font-size: 16px;
-    color: #666;
     font-weight: bold;
     margin-bottom: 15px;
 }
+
+/* Estilos específicos por mes */
+.months-container div, .expenses-container div {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin: 0 5px;
+}
+
+/* Colores para diferenciar meses */
+.months-container div:nth-child(1) { background-color: #a8a5a5; } /* Rojo */
+.months-container div:nth-child(2) { background-color: #565655; } /* Naranja */
+.months-container div:nth-child(3) { background-color: #a8a5a5; } /* Verde */
+
+
 
 /* Línea divisoria */
 .divider {
@@ -98,7 +112,7 @@ html, body {
     }
 
     .months-container, .expenses-container {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .transaction-info {
