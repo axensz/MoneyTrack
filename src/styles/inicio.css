@@ -79,7 +79,7 @@ html, body {
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 /* Contenedor de presupuesto */
@@ -98,7 +98,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+
 
 }
 
@@ -110,6 +110,13 @@ html, body {
     font-size: 18px;
     color: #000;
     font-weight: bold;
+}
+
+.section-title-2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 /* Contenedor del gráfico */
