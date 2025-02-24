@@ -5,22 +5,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const saveChanges = document.getElementById("saveChanges");
 
     togglePassword.addEventListener("click", function() {
-        const isDisabled = newPassword.disabled;
-        
-        // Habilita o deshabilita los campos
-        newPassword.disabled = !isDisabled;
-        repeatPassword.disabled = !isDisabled;
+        const isEditing = !newPassword.disabled; // Verifica si está en modo edición
 
-        // Cambia el texto del botón
-        togglePassword.textContent = isDisabled ? "Cancelar" : "Editar";
-
-        // Reinicia los campos si se cancela la edición
-        if (isDisabled) {
+        if (isEditing) {
+            // Si está en edición y se presiona cancelar, limpiar los campos
             newPassword.value = "";
             repeatPassword.value = "";
             saveChanges.classList.remove("enabled");
             saveChanges.disabled = true;
         }
+
+        // Habilita o deshabilita los campos
+        newPassword.disabled = isEditing;
+        repeatPassword.disabled = isEditing;
+
+        // Cambia el texto del botón
+        togglePassword.textContent = isEditing ? "Editar" : "Cancelar";
     });
 
     // Activa el botón de guardar si ambas contraseñas coinciden y no están vacías

@@ -8,8 +8,7 @@
     <script src="/src/js/configuracion.js" defer></script>
 </head>
 <body>
-    <!-- Navbar -->
-    
+
     <!-- Flecha de regreso -->
     <a href="mas.html" class="back-arrow"></a>
 
@@ -17,19 +16,31 @@
         <h1 class="title">Configuración</h1>
         
         <!-- Formulario de configuración -->
-        <form class="config-form">
-            <!-- Información del usuario (NO editable) -->
-            <input type="text" value="Usuario1" readonly>
-            <input type="email" value="Usuario1@gmail.com" readonly>
+        <form class="register-form">
+            <div class="input-group">
+                <input type="text" value="Usuario" readonly>
+                <span class="input-line"></span>
+            </div>
+            <div class="input-group">
+                <input type="email" value="Correo Electrónico" readonly>
+                <span class="input-line"></span>
+            </div>
 
             <!-- Sección de cambio de contraseña -->
             <h2 class="subtitle">Cambiar Contraseña</h2>
-            <input type="password" id="newPassword" placeholder="Nueva contraseña" disabled>
-            <input type="password" id="repeatPassword" placeholder="Repite tu nueva contraseña" disabled>
+            <div class="input-group">
+                <input type="password" id="newPassword" placeholder="Nueva contraseña" disabled>
+                <span class="input-line"></span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="repeatPassword" placeholder="Repite tu nueva contraseña" disabled>
+                <span class="input-line"></span>
+            </div>
 
             <button id="togglePassword" type="button">Editar</button>
             <button id="saveChanges" type="submit" disabled>Guardar Cambios</button>
         </form>
     </div>
+
 </body>
 </html>
