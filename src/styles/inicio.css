@@ -1,7 +1,7 @@
 /* Estilos generales */
 html, body {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
@@ -13,15 +13,15 @@ html, body {
 
 /* Contenedor principal */
 .inicio-container {
-    margin-top: 140px;
-    margin-left: 10px;
+    margin: 30px auto 0;
+    padding: 16px 12px; /* Ajuste de margen lateral */
     width: 100%;
-    max-width: 393px; /* Tamaño del iPhone */
-    height: 100vh;
-    padding: 16px;
+    max-width: 380px; /* Mantiene el tamaño óptimo */
+    height: calc(100vh - 140px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 /* Título principal */
@@ -30,24 +30,24 @@ html, body {
     font-weight: bold;
     color: #333;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Cuadrícula de información */
 .grid-container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Espacio más reducido */
-    flex-grow: 1;
+    gap: 10px;
 }
 
-/* Estilos de los rectángulos (más pequeños) */
+/* Estilos de los rectángulos */
 .grid-item {
     background-color: #d1d1d1;
-    padding: 6px; /* Menos padding */
-    height: 50px; /* Reducción de altura */
-    text-align: justify;
-    font-size: 12px; /* Texto más pequeño */
+    padding: 6px;
+    height: 50px;
+    text-align: center; /* Mejor alineación del texto */
+    font-size: 12px;
     font-weight: bold;
     color: #333;
     border-radius: 8px;
@@ -55,7 +55,7 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 /* Montos */
@@ -77,35 +77,51 @@ html, body {
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    margin-bottom: 10px;
+    margin-top: 30px;
 }
 
 /* Contenedor de presupuesto */
 .budget-box {
     width: 100%;
+    max-width: 355px;
     background-color: #b0b0b0;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     color: #333;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+
 }
 
-/* Contenedor del gráfico más compacto */
+.budget-box p {
+    margin: 4px 0;
+}
+
+.budget-total {
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Contenedor del gráfico */
 .chart-container {
     width: 100%;
-    max-width: 350px; /* Reducido */
-    height: 100;
-    padding: 4px; /* Menos padding */
+    height: 200px;
+    padding: 4px;
     text-align: center;
-    flex-grow: 10;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
-
-
 
 /* Barra de navegación inferior */
 .navbar {
@@ -136,4 +152,61 @@ html, body {
     width: 22px;
     height: 22px;
     margin-bottom: 3px;
+}
+
+/* Botón flotante */
+.floating-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Estilo del icono */
+.floating-button img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Efecto hover */
+.floating-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* ----------- RESPONSIVE DESIGN ----------- */
+
+/* Ajuste en pantallas menores a 360px */
+@media (max-width: 360px) {
+    .inicio-container {
+        padding: 16px 8px; /* Ajuste de márgenes laterales */
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Hace que los elementos ocupen toda la fila */
+    }
+
+    .grid-item {
+        text-align: center;
+        align-items: center;
+    }
+
+    .chart-container {
+        height: 150px; /* Reducción del tamaño */
+        padding: 2px;
+    }
+
+    .nav-item img {
+        width: 18px;
+        height: 18px;
+    }
 }

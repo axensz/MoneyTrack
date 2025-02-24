@@ -2,26 +2,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('budgetChart').getContext('2d');
 
     new Chart(ctx, {
-        type: 'line', // Cambio a gráfico de líneas
+        type: 'line', 
         data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril'], // Etiquetas del eje X
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril'], 
             datasets: [{
-                label: 'Gastos Mensuales',
-                data: [500, 300, 150, 250], // Datos en el eje Y
-                borderColor: '#36A2EB', // Color de la línea
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de relleno
-                borderWidth: 2,
-                pointRadius: 5, // Tamaño de los puntos
-                pointBackgroundColor: '#36A2EB', // Color de los puntos
-                tension: 0.3 // Suaviza la línea
+                label: 'Gastos',
+                data: [500, 300, 150, 250], 
+                borderColor: '#36A2EB',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                borderWidth: 1.5, // Línea más delgada
+                pointRadius: 3, // Puntos más pequeños
+                pointBackgroundColor: '#36A2EB',
+                tension: 0.3
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true, // Evita estiramiento
             scales: {
                 y: {
                     beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Oculta la leyenda para más espacio
                 }
             }
         }
