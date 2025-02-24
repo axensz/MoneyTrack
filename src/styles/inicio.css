@@ -4,10 +4,6 @@ html, body {
     width: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f8f8;
     overflow: hidden;
 }
 
@@ -16,7 +12,6 @@ html, body {
     padding: 16px 12px; /* Ajuste de margen lateral */
     width: 100%;
     max-width: 380px; /* Mantiene el tamaño óptimo */
-    height: calc(100vh - 140px);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -25,11 +20,13 @@ html, body {
 
 /* Título principal */
 .page-title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
     text-align: left;
     margin-bottom: 10px;
+    margin-top: 70px;
+    
 }
 
 /* Cuadrícula de información */
@@ -102,11 +99,10 @@ html, body {
 
 /* Sección de presupuesto */
 .section-title {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    text-align: left;
 }
 
 /* Contenedor de presupuesto */
