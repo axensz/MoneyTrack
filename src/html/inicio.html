@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/src/styles/inicio.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="inicio-container">
+        <!-- Título -->
+        <h1 class="page-title">Hola, Usuario</h1>
+
+        <!-- Cuadrícula de rectángulos -->
+        <div class="grid-container">
+            <div class="grid-item">
+                <p class="item-title">Ingresos</p>
+                <p class="item-amount">$1,500</p>
+            </div>
+            <div class="grid-item">
+                <p class="item-title">Gastos</p>
+                <p class="item-amount">$750</p>
+            </div>
+            <div class="grid-item">
+                <p class="item-title">Ahorros</p>
+                <p class="item-amount">$500</p>
+            </div>
+            <div class="grid-item agregar">
+                <p class="item-title">Agregar</p>
+                <img src="/src/assets/plus.svg" alt="Agregar" class="plus-icon">
+            </div>
+        </div>
+
+        <!-- Sección de presupuesto -->
+        <h2 class="section-title">Presupuesto</h2>
+        <div class="budget-container">
+            <div class="budget-box">Total disponible</div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="chart-container">
+            <canvas id="budgetChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Barra de navegación inferior -->
+    <div class="navbar">
+        <a href="inicio.html" class="nav-item">
+            <img src="/src/assets/house.svg" alt="Inicio">
+            <span>Inicio</span>
+        </a>
+        <a href="transacciones.html" class="nav-item">
+            <img src="/src/assets/money.svg" alt="Transacciones">
+            <span>Transacciones</span>
+        </a>
+        <a href="configuracion.html" class="nav-item">
+            <img src="/src/assets/points.svg" alt="Más">
+            <span>Más</span>
+        </a>
+    </div>
+
+    <script src="/src/js/chart.js"></script>
+
+</body>
+</html>
