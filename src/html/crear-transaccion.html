@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoneyTrack - Agregar Transacción</title>
+  <link rel="stylesheet" href="/src/styles/crear-transaccion.css">
+  <script src="js/script.js"></script>
+</head>
+<body>
+
+    <!-- Flecha de regreso -->
+    <a href="transacciones.html" class="back-arrow"></a>
+    
+  <div class="container">
+
+    <h1 class="title">Agregar Transacción</h1>
+    
+    <!-- Formulario de transacción -->
+    <form class="transaction-form">
+      
+      <input type="text" placeholder="Ingresa Título" required>
+      <input type="number" placeholder="Valor Transacción" required>
+      
+      <!-- Selección de tipo de movimiento -->
+      <select required>
+        <option value="" disabled selected>Selecciona Tipo de Movimiento</option>
+        <option value="ingreso">Ingreso</option>
+        <option value="gasto">Gasto</option>
+      </select>
+      
+      <!-- Selección de cuenta -->
+      <select required>
+        <option value="" disabled selected>Selecciona Cuenta</option>
+        <option value="cuenta1">Cuenta Principal</option>
+        <option value="cuenta2">Cuenta Ahorros</option>
+        <option value="cuenta3">Efectivo</option>
+      </select>
+      
+      <button type="submit">Crear</button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

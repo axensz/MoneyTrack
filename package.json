@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "sass": "^1.85.0",
-    "vite": "^6.1.0"
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "moneytrack": "file:"

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoneyTrack - Crear Cuenta</title>
+  <link rel="stylesheet" href="/src/styles/crear-cuenta.css">
+</head>
+<body>
+
+    <!-- Flecha de regreso -->
+    <a href="inicio.html" class="back-arrow"></a>
+
+  <div class="container">
+    <h1 class="title">Crear Cuenta</h1>
+
+    <!-- Formulario de creación de cuenta -->
+    <form class="account-form">
+      <input type="text" placeholder="Nombre de la cuenta" required>
+      <input type="number" placeholder="Saldo inicial" required>
+      <select required>
+        <option value="" disabled selected>Selecciona el tipo de cuenta</option>
+        <option value="ahorros">Ahorros</option>
+        <option value="corriente">Corriente</option>
+        <option value="efectivo">Efectivo</option>
+        <option value="otro">Otro</option>
+      </select>
+
+      <button type="submit">Crear Cuenta</button>
+    </form>
+  </div>
+
+</body>
+</html>
