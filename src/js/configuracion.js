@@ -37,3 +37,19 @@ document.addEventListener("DOMContentLoaded", function() {
     newPassword.addEventListener("input", checkPasswords);
     repeatPassword.addEventListener("input", checkPasswords);
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Verificar si el usuario está almacenado en localStorage
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (usuario) {
+        // Asignar los valores a los campos
+        document.getElementById("username").value = usuario.nombre;
+        document.getElementById("userEmail").value = usuario.email;
+    } else {
+        console.warn("No se encontró usuario en localStorage");
+        window.location.href = "login.html"; // Redirige si no hay usuario
+    }
+});
+

@@ -18,14 +18,14 @@
         <!-- Formulario de configuración -->
         <form class="register-form">
             <div class="input-group">
-                <input type="text" value="Usuario" readonly>
+                <input type="text" id="username" readonly>
                 <span class="input-line"></span>
             </div>
             <div class="input-group">
-                <input type="email" value="Correo Electrónico" readonly>
+                <input type="email" id="userEmail" readonly>
                 <span class="input-line"></span>
             </div>
-
+    
             <!-- Sección de cambio de contraseña -->
             <h2 class="subtitle">Cambiar Contraseña</h2>
             <div class="input-group">
@@ -36,11 +36,39 @@
                 <input type="password" id="repeatPassword" placeholder="Repite tu nueva contraseña" disabled>
                 <span class="input-line"></span>
             </div>
-
+    
             <button id="togglePassword" type="button">Editar</button>
             <button id="saveChanges" type="submit" disabled>Guardar Cambios</button>
         </form>
     </div>
-
+    <div class="container">
+        <h1 class="title">Configuración</h1>
+        
+        <!-- Formulario de configuración -->
+        <form class="register-form">
+            <div class="input-group">
+                <input type="text" id="username" readonly>
+                <span class="input-line"></span>
+            </div>
+            <div class="input-group">
+                <input type="email" id="userEmail" readonly>
+                <span class="input-line"></span>
+            </div>
+    
+            <!-- Sección de cambio de contraseña -->
+            <h2 class="subtitle">Cambiar Contraseña</h2>
+            <div class="input-group">
+                <input type="password" id="newPassword" placeholder="Nueva contraseña" disabled>
+                <span class="input-line"></span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="repeatPassword" placeholder="Repite tu nueva contraseña" disabled>
+                <span class="input-line"></span>
+            </div>
+    
+            <button id="togglePassword" type="button">Editar</button>
+            <button id="saveChanges" type="submit" disabled>Guardar Cambios</button>
+        </form>
+    </div>
 </body>
 </html>
