@@ -103,14 +103,14 @@ html, body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #978da2;
+    background-color: #8E46E5;
     color: #000000;
     margin: 20px auto 0 auto; /* Centrar el botón */
     display: block;
 }
 
 .register-form button:hover {
-    background: #5e5a6f;
+    background-color: #A860FF;
 }
 
 /* Media Queries para iPhone 14 y 14 Pro */

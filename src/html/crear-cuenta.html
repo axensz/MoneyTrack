@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoneyTrack - Crear Cuenta</title>
   <link rel="stylesheet" href="/src/styles/crear-cuenta.css">
+  <script src="/src/js/main.js"></script>
 </head>
 <body>
 
@@ -18,17 +19,24 @@
     <form class="account-form">
       <input type="text" placeholder="Nombre de la cuenta" required>
       <input type="number" placeholder="Saldo inicial" required>
+  
       <select required>
-        <option value="" disabled selected>Selecciona el tipo de cuenta</option>
-        <option value="ahorros">Ahorros</option>
-        <option value="corriente">Corriente</option>
-        <option value="efectivo">Efectivo</option>
-        <option value="otro">Otro</option>
+          <option value="" disabled selected>Selecciona el tipo de cuenta</option>
+          <option value="ahorros">Ahorros</option>
+          <option value="corriente">Corriente</option>
+          <option value="efectivo">Efectivo</option>
+          <option value="otro">Otro</option>
       </select>
-
+  
+      <!-- Selector de color -->
+      <div class="color-selector-container">
+          <label>Color de la cuenta:</label>
+          <input type="color" name="colorselector" class="colorselector">
+      </div>
+  
       <button type="submit">Crear Cuenta</button>
-    </form>
-  </div>
+  </form>
+  
 
 </body>
 </html>

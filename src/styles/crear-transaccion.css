@@ -91,14 +91,14 @@ html, body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #978da2;
+    background-color: #8E46E5;
     color: #000000;
     margin: 20px auto 0 auto;
     display: block;
 }
 
 .transaction-form button:hover {
-    background: #5e5a6f;
+    background: #A860FF;
 }
 
 /* Media Queries para iPhone 14 y 14 Pro */

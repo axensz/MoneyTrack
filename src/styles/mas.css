@@ -52,8 +52,9 @@ html, body {
     transition: background 0.2s;
 }
 
+
 .option:hover {
-    background-color: #bfbfbf;
+    background-color: #A860FF;
 }
 
 /* Estilo de los íconos */

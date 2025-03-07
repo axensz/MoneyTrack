@@ -96,12 +96,12 @@ html, body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #978da2;
+    background-color: #8E46E5;
     color: #000000;
     margin: 20px auto 0 auto; /* Centrarlo */
     display: block;
 }
 
 .Boton-RecuperaraContra:hover {
-    background-color: #5e5a6f;
+    background-color: #A860FF;
 }

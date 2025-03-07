@@ -8,3 +8,32 @@ function deshabilitarBoton() {
 }
 
 
+//Funcion para Crear Cuenta Bancaria
+function toggleColorPicker(event) {
+    event.stopPropagation(); // Evita que el evento se propague al body
+    let picker = document.getElementById("colorPicker");
+
+    // Verificar el estado actual y alternarlo
+    if (picker.style.display === "block") {
+        picker.style.display = "none";
+    } else {
+        picker.style.display = "block";
+    }
+}
+
+// Función para seleccionar un color y aplicarlo al preview
+function selectColor(color) {
+    let preview = document.getElementById("colorPreview");
+    preview.style.backgroundColor = color;
+
+    // Ocultar el selector de colores
+    document.getElementById("colorPicker").style.display = "none";
+}
+
+// Cerrar el selector de colores si el usuario hace clic fuera de él
+document.body.addEventListener("click", function () {
+    document.getElementById("colorPicker").style.display = "none";
+});
+
+
+
