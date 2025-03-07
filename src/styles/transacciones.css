@@ -26,41 +26,28 @@ html, body {
     margin-bottom: 30px;
 }
 
-/* Contenedor de los meses */
-.months-container {
+/* Estilos para la selección de mes */
+.month-selector {
+    margin-bottom: 20px;
     display: flex;
-    justify-content: space-between;
-    text-align: center;
+    flex-direction: column;
+}
+
+.month-selector label {
     font-size: 16px;
     font-weight: bold;
-    color: white;
+    color: #333;
     margin-bottom: 5px;
 }
 
-/* Contenedor de los gastos */
-.expenses-container {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+.month-selector select {
+    padding: 10px;
     font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
 }
-
-/* Estilos específicos por mes */
-.months-container div, .expenses-container div {
-    flex: 1;
-    padding: 10px 0;
-    border-radius: 8px;
-    margin: 0 5px;
-}
-
-/* Colores para diferenciar meses */
-.months-container div:nth-child(1) { background-color: #a8a5a5; } /* Rojo */
-.months-container div:nth-child(2) { background-color: #565655; } /* Naranja */
-.months-container div:nth-child(3) { background-color: #a8a5a5; } /* Verde */
-
-
 
 /* Línea divisoria */
 .divider {
@@ -108,10 +95,6 @@ html, body {
 
     .page-title {
         font-size: 22px;
-    }
-
-    .months-container, .expenses-container {
-        font-size: 14px;
     }
 
     .transaction-info {
