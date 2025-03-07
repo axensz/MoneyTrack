@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transacciones</title>
     <link rel="stylesheet" href="/src/styles/transacciones.css">
+    <script defer src="/src/js/transacciones.js"></script>
 </head>
 <body>
 
@@ -12,38 +13,31 @@
         <!-- Título -->
         <h1 class="page-title">Transacciones</h1>
 
-        <!-- Selector de mes -->
-        <div class="month-selector">
-            <label for="mesTransaccion">Mes:</label>
-            <select id="mesTransaccion">
-                <option value="enero">Enero</option>
-                <option value="febrero">Febrero</option>
-                <option value="marzo">Marzo</option>
-                <option value="abril">Abril</option>
-                <option value="mayo">Mayo</option>
-                <option value="junio">Junio</option>
-                <option value="julio">Julio</option>
-                <option value="agosto">Agosto</option>
-                <option value="septiembre">Septiembre</option>
-                <option value="octubre">Octubre</option>
-                <option value="noviembre">Noviembre</option>
-                <option value="diciembre">Diciembre</option>
-            </select>
+        <!-- Filtros -->
+        <div class="filters">
+            <div class="month-selector">
+                <label for="mesTransaccion">Mes:</label>
+                <select id="mesTransaccion"></select>
+            </div>
+            <div class="type-selector">
+                <label for="tipoFiltro">Tipo:</label>
+                <select id="tipoFiltro">
+                    <option value="todos">Todos</option>
+                    <option value="ingreso">Ingresos</option>
+                    <option value="gasto">Gastos</option>
+                </select>
+            </div>
         </div>
 
         <div class="divider"></div>
 
         <!-- Lista de transacciones -->
-        <div class="transaction">
-            <img src="/src/assets/house.svg" class="transaction-icon" alt="icono">
-            <div class="transaction-info">Compra en tienda</div>
-            <div class="transaction-amount">$200</div>
-        </div>
+        <div id="listaTransacciones"></div>
+        <p id="mensajeVacio" class="empty-message" style="display: none;">No hay transacciones para este mes.</p>
 
-        <div class="transaction">
-            <img src="/src/assets/house.svg" class="transaction-icon" alt="icono">
-            <div class="transaction-info">Pago de suscripción</div>
-            <div class="transaction-amount">$15</div>
+        <!-- Total -->
+        <div class="total-container">
+            <strong>Total:</strong> <span id="totalMonto">$0.00</span>
         </div>
     </div>
 

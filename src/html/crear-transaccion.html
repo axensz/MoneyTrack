@@ -5,43 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoneyTrack - Agregar Transacción</title>
   <link rel="stylesheet" href="/src/styles/crear-transaccion.css">
-  <script src="js/script.js"></script>
+  <script defer src="/src/js/transacciones.js"></script>
 </head>
 <body>
 
-    <!-- Flecha de regreso -->
-    <a href="transacciones.html" class="back-arrow"></a>
-    
+  <!-- Flecha de regreso -->
+  <a href="transacciones.html" class="back-arrow"></a>
+  
   <div class="container">
-
     <h1 class="title">Agregar Transacción</h1>
     
     <!-- Formulario de transacción -->
-    <form class="transaction-form">
+    <form id="transactionForm" class="transaction-form">
       
-      <input type="text" placeholder="Ingresa Título" required>
-      <input type="number" placeholder="Valor Transacción" required>
+      <input type="text" id="titulo" placeholder="Ingresa Título" required>
+      <input type="text" id="monto" placeholder="Valor Transacción" step="0.01" required>
       
       <!-- Selección de tipo de movimiento -->
-      <select required>
+      <select id="tipoMovimiento" required>
         <option value="" disabled selected>Selecciona Tipo de Movimiento</option>
         <option value="ingreso">Ingreso</option>
         <option value="gasto">Gasto</option>
       </select>
       
       <!-- Selección de cuenta -->
-      <select required>
+      <select id="cuenta" required>
         <option value="" disabled selected>Selecciona Cuenta</option>
-        <option value="cuenta1">Cuenta Principal</option>
-        <option value="cuenta2">Cuenta Ahorros</option>
-        <option value="cuenta3">Efectivo</option>
       </select>
-      
+
+      <!-- Fecha de la transacción (se sincroniza automáticamente con la actual) -->
+      <input type="date" id="fecha" required>
+
       <button type="submit">Crear</button>
 
     </form>
 
   </div>
+
+  <script>
+    document.getElementById("monto").addEventListener("input", function (event) {
+      let value = event.target.value.replace(/\D/g, ""); // Solo números
+      if (value) {
+          let numericValue = Math.min(Number(value), 99999999999);
+          event.target.value = numericValue.toLocaleString("es-ES");
+      }
+  });
+  
+  </script>
 
 </body>
 </html>

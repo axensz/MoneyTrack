@@ -170,3 +170,24 @@ html, body {
 .floating-button:hover {
     background-color: #f0f0f0;
 }
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.type-selector select, .month-selector select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.total-container {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+}
