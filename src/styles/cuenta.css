@@ -35,7 +35,6 @@ html, body {
 .title {
     font-size: 24px;
     text-align: left;
-    margin-bottom: 20px;
 }
 
 
@@ -43,7 +42,7 @@ html, body {
 .register-form {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 
 /* Inputs y Select con estilo de línea inferior */
@@ -103,21 +102,23 @@ html, body {
     background-color: #5e5a6f;
 }
 
-/* Ajuste responsivo */
-@media only screen and (max-width: 390px) {
-    .container {
-        width: 95%;
-    }
 
-    .title {
-        font-size: 22px;
-    }
+.togglePassword {
+    margin: 0;
+}
 
-    input {
-        font-size: 14px;
-    }
+.success-message {
+    display: none;
+    color: #4CAF50; /* Verde */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
 
-    #togglePassword, #saveChanges {
-        font-size: 14px;
-    }
+.success-message.show {
+    display: block;
+    opacity: 1;
 }

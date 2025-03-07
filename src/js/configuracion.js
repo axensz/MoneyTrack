@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const usuario = JSON.parse(localStorage.getItem("userData"));
 
     if (usuario) {
-        // Asignar los valores a los campos de la configuración
         document.getElementById("username").value = usuario.username;
         document.getElementById("userEmail").value = usuario.email;
     } else {
@@ -12,45 +11,85 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Función para habilitar y deshabilitar edición de contraseña
-document.getElementById("togglePassword").addEventListener("click", function () {
-    const newPassword = document.getElementById("newPassword");
-    const repeatPassword = document.getElementById("repeatPassword");
-    const saveChanges = document.getElementById("saveChanges");
+// Elementos del DOM
+const newPassword = document.getElementById("newPassword");
+const repeatPassword = document.getElementById("repeatPassword");
+const togglePassword = document.getElementById("togglePassword");
+const saveChanges = document.getElementById("saveChanges");
+const errorMessage = document.getElementById("passwordError");
+const successMessage = document.getElementById("successMessage"); // Mover aquí
 
+// Alternar edición de contraseña
+togglePassword.addEventListener("click", function () {
     const isEditing = !newPassword.disabled;
 
     if (isEditing) {
-        // Si cancela, limpiar los campos
+        // Restablecer campos si se cancela
         newPassword.value = "";
         repeatPassword.value = "";
-        saveChanges.classList.remove("enabled");
+        errorMessage.textContent = "";
         saveChanges.disabled = true;
+        saveChanges.classList.remove("enabled"); // Remover clase de botón activo
     }
 
-    // Alternar habilitación de los campos
+    // Habilitar/deshabilitar inputs
     newPassword.disabled = isEditing;
     repeatPassword.disabled = isEditing;
+    saveChanges.disabled = isEditing; // Solo habilitar si está en modo edición
 
-    // Cambiar el texto del botón
-    this.textContent = isEditing ? "Editar" : "Cancelar";
+    // Cambiar texto del botón
+    togglePassword.textContent = isEditing ? "Editar Contraseña" : "Cancelar";
 });
 
-// Función para validar y activar botón de guardar cambios
+// Validar contraseñas y activar botón
 function checkPasswords() {
-    const newPassword = document.getElementById("newPassword").value;
-    const repeatPassword = document.getElementById("repeatPassword").value;
-    const saveChanges = document.getElementById("saveChanges");
+    if (newPassword.disabled) return; // No validar si los inputs están deshabilitados
 
-    if (newPassword !== "" && newPassword === repeatPassword) {
-        saveChanges.classList.add("enabled");
-        saveChanges.disabled = false;
-    } else {
-        saveChanges.classList.remove("enabled");
+    const pass1 = newPassword.value.trim();
+    const pass2 = repeatPassword.value.trim();
+
+    if (pass1.length < 6) {
+        errorMessage.textContent = "La contraseña debe tener al menos 6 caracteres.";
         saveChanges.disabled = true;
+        saveChanges.classList.remove("enabled");
+        return;
     }
+
+    if (pass1 !== pass2) {
+        errorMessage.textContent = "Las contraseñas no coinciden.";
+        saveChanges.disabled = true;
+        saveChanges.classList.remove("enabled");
+        return;
+    }
+
+    // Habilitar el botón si todo es correcto
+    errorMessage.textContent = "";
+    saveChanges.disabled = false;
+    saveChanges.classList.add("enabled"); // Agregar clase de botón activo
 }
 
-document.getElementById("newPassword").addEventListener("input", checkPasswords);
-document.getElementById("repeatPassword").addEventListener("input", checkPasswords);
+// Eventos para validar contraseñas
+newPassword.addEventListener("input", checkPasswords);
+repeatPassword.addEventListener("input", checkPasswords);
 
+// Guardar la nueva contraseña
+saveChanges.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (saveChanges.disabled) return; // Evitar cambios si el botón está deshabilitado
+
+    let usuario = JSON.parse(localStorage.getItem("userData"));
+    usuario.password = newPassword.value.trim();
+    localStorage.setItem("userData", JSON.stringify(usuario));
+
+    // Mostrar mensaje de éxito
+    successMessage.classList.add("show");
+
+    // Ocultar el mensaje después de 3 segundos
+    setTimeout(() => {
+        successMessage.classList.remove("show");
+    }, 3000);
+
+    // Resetear estado
+    togglePassword.click(); // Simular clic para desactivar edición
+});
