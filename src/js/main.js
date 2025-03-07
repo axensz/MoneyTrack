@@ -231,3 +231,35 @@ function generarGrafico() {
 document.addEventListener("DOMContentLoaded", function () {
     cargarCuentas();
 });
+
+
+// Función para cargar la pregunta de seguridad en la página de recuperación
+document.addEventListener("DOMContentLoaded", function () {
+    let storedData = JSON.parse(localStorage.getItem("userData"));
+    
+    if (storedData) {
+        document.getElementById("preguntaSeguridad").textContent = storedData.securityQuestion;
+    } else {
+        document.getElementById("preguntaSeguridad").textContent = "No hay usuario registrado.";
+    }
+});
+
+// Función para verificar la respuesta de seguridad y mostrar la contraseña
+function verificarRespuesta() {
+    let storedData = JSON.parse(localStorage.getItem("userData"));
+    let respuestaIngresada = document.getElementById("respuestaSeguridad").value.trim();
+    let mensaje = document.getElementById("mensajeRecuperacion");
+
+    if (!storedData) {
+        mensaje.textContent = "No hay usuario registrado.";
+        return;
+    }
+
+    if (respuestaIngresada === storedData.securityAnswer) {
+        mensaje.textContent = "Tu contraseña es: " + storedData.password;
+        mensaje.style.color = "green";
+    } else {
+        mensaje.textContent = "Respuesta incorrecta.";
+        mensaje.style.color = "red";
+    }
+}

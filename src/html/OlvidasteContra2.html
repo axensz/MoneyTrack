@@ -21,14 +21,16 @@
         <div class="input-group">
             <div class="input-line">
                 <img src="/src/assets/key.svg" alt="Key Icon" class="input-icon">
-                <input type="text" placeholder="Nombre de tu Perro">
+                <!-- Input de pregunta de seguridad (se llenará dinámicamente) -->
+                <p id="preguntaSeguridad"></p>
+                <input type="text" id="respuestaSeguridad" placeholder="Tu respuesta">
+
             </div>
 
             <!-- Botón de Verificar -->
-            <button class="BotonVerificar" onclick="deshabilitarBoton()">
-                Verificar
-            </button>
-            <p class="Contrasena"></p>
+            <button class="BotonVerificar" onclick="verificarRespuesta()">Verificar</button>
+            <p id="mensajeRecuperacion" class="Contrasena"></p>
+
         </div>
     </div>
 
