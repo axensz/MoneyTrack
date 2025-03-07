@@ -93,20 +93,14 @@ html, body {
 /* Botón de agregar */
 .grid-item-agregar .plus-icon {
     width: 18px;
-    height: 18px;
-    margin-top: 2px;
 }
 
-.budget-container{
-    width: 92%
-}
 
-/* Sección de presupuesto */
 .section-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: #333;
-    text-align: left;
+    margin-bottom: 10px;
 }
 
 /* Contenedor de presupuesto */
@@ -143,6 +137,7 @@ html, body {
 }
 
 .section-title-2 {
+    margin-top: 50px;
     font-size: 18px;
     font-weight: bold;
     color: #333;
