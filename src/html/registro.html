@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoneyTrack - Registrarme</title>
   <link rel="stylesheet" href="/src/styles/registro.css">
-  <script src="js/script.js"></script>
+  <script src="/src/js/main.js" defer></script>
 </head>
 <body>
 
@@ -17,23 +17,26 @@
     <h1 class="title">Registrarme</h1>
     
     <!-- Formulario de registro -->
-    <form class="register-form">
+    <form class="register-form" onsubmit="event.preventDefault(); register();">
       
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo Electrónico" required>
-      <input type="password" placeholder="Contraseña" required>
+      <input type="text" id="regUser" placeholder="Nombre" required>
+      <input type="email" id="regEmail" placeholder="Correo Electrónico" required>
+      <input type="password" id="regPass" placeholder="Contraseña" required>
 
-      <!-- Pregunta de seguridad (Select Box) -->
-      <select required>
+      <!-- Pregunta de seguridad -->
+      <select id="securityQuestion" required>
         <option value="" disabled selected>Selecciona una pregunta de seguridad</option>
         <option value="1">¿Cuál es el nombre de tu mascota?</option>
         <option value="2">¿Cuál es tu ciudad de nacimiento?</option>
         <option value="3">¿Cuál es tu comida favorita?</option>
         <option value="4">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
       </select>
-      <input type="text" placeholder="Respuesta" required>
+      <input type="text" id="securityAnswer" placeholder="Respuesta" required>
 
       <button type="submit">Registrarme</button>
+
+      <!-- Mensaje de confirmación -->
+      <p id="registerMsg" class="success"></p>
 
     </form>
 

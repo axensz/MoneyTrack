@@ -10,8 +10,8 @@
 <body>
 
     <div class="inicio-container">
-        <!-- Título -->
-        <h1 class="page-title">Hola, Usuario</h1>
+        <!-- Título con nombre del usuario -->
+        <h1 class="page-title" id="welcomeUser">Hola, Usuario</h1>
 
         <!-- Cuadrícula de rectángulos -->
         <div class="grid-container">
@@ -38,12 +38,12 @@
         <div class="budget-container">
             <div class="budget-box">
                 <p>Dinero Total</p>
-                <p class="budget-total">$1,000</p> <!-- Aquí se muestra el total -->
+                <p class="budget-total">$1,000</p>
             </div>
         </div>
 
         <!-- Gráfico -->
-        <h2 class="section-title-2">Grafico Historico</h2>
+        <h2 class="section-title-2">Gráfico Histórico</h2>
         <div class="chart-container">
             <canvas id="budgetChart"></canvas>
         </div>
@@ -65,10 +65,24 @@
         </a>
     </div>
 
-    
-    
+    <!-- Script para cargar el nombre del usuario -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let user = localStorage.getItem("user");
+            if (!user) {
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("welcomeUser").textContent = "Hola, " + user;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("user");
+            localStorage.removeItem("loggedIn");
+            window.location.href = "login.html";
+        }
+    </script>
 
     <script src="/src/js/chart.js"></script>
-
 </body>
 </html>

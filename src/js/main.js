@@ -37,3 +37,56 @@ document.body.addEventListener("click", function () {
 
 
 
+// Función para registrar usuario
+function register() {
+    let user = document.getElementById("regUser").value.trim();
+    let email = document.getElementById("regEmail").value.trim();
+    let pass = document.getElementById("regPass").value;
+    let question = document.getElementById("securityQuestion").value;
+    let answer = document.getElementById("securityAnswer").value.trim();
+
+    if (user === "" || email === "" || pass === "" || question === "" || answer === "") {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
+    // Guardar en LocalStorage
+    let userData = {
+        username: user,
+        email: email,
+        password: pass,
+        securityQuestion: question,
+        securityAnswer: answer
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    document.getElementById("registerMsg").textContent = "Registro exitoso. ¡Ahora inicia sesión!";
+    setTimeout(() => window.location.href = "login.html", 2000);
+}
+
+// Función para iniciar sesión
+function login() {
+    let user = document.getElementById("loginUser").value.trim();
+    let pass = document.getElementById("loginPass").value;
+
+    let storedData = localStorage.getItem("userData");
+
+    if (!storedData) {
+        document.getElementById("loginError").textContent = "No hay usuarios registrados";
+        return;
+    }
+
+    let userData = JSON.parse(storedData);
+
+    if (user === userData.username && pass === userData.password) {
+        localStorage.setItem("user", user);
+        localStorage.setItem("loggedIn", true);
+        window.location.href = "inicio.html";
+    } else {
+        document.getElementById("loginError").textContent = "Usuario o contraseña incorrectos";
+    }
+}
+
+
+
