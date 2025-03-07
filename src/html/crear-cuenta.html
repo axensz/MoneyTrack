@@ -18,7 +18,7 @@
         <!-- Formulario de creación de cuenta -->
         <form class="account-form" id="crearCuentaForm">
             <input type="text" id="nombreCuenta" placeholder="Nombre de la cuenta" required>
-            <input type="number" id="saldoInicial" placeholder="Saldo inicial" required>
+            <input type="text" id="saldoInicial" placeholder="Saldo inicial" required>
         
             <select id="tipoCuenta" required>
                 <option value="" disabled selected>Selecciona el tipo de cuenta</option>
@@ -37,6 +37,17 @@
             <button type="submit">Crear Cuenta</button>
         </form>
     </div>
+
+    <script>
+      document.getElementById("saldoInicial").addEventListener("input", function (event) {
+        let value = event.target.value.replace(/\D/g, ""); // Solo números
+        if (value) {
+            let numericValue = Math.min(Number(value), 99999999999);
+            event.target.value = numericValue.toLocaleString("es-ES");
+        }
+    });
+    
+    </script>
 
 </body>
 </html>

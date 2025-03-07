@@ -35,6 +35,7 @@ html, body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    width: 98%;
 }
 
 /* Estilos de los rectángulos */
@@ -82,7 +83,6 @@ html, body {
 .grid-item-agregar:hover {
     background-color: #bfbfbf;
 }
-
 /* Montos */
 .item-amount {
     font-size: 14px;
@@ -95,6 +95,10 @@ html, body {
     width: 18px;
     height: 18px;
     margin-top: 2px;
+}
+
+.budget-container{
+    width: 92%
 }
 
 /* Sección de presupuesto */

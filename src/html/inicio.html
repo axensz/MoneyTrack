@@ -6,6 +6,7 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="/src/styles/inicio.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <body>
 
@@ -19,10 +20,11 @@
         </div>
 
         <!-- Botón para agregar cuenta -->
-        <div class="grid-item-agregar" onclick="window.location.href='crear-cuenta.html'">
+        <div id="botonAgregarCuenta" class="grid-item-agregar" onclick="window.location.href='crear-cuenta.html'">
             <p class="item-title">Agregar</p>
             <img src="/src/assets/plus.svg" alt="Agregar" class="plus-icon">
         </div>
+
 
         <!-- Sección de presupuesto -->
         <h2 class="section-title">Saldo Total</h2>
@@ -58,7 +60,6 @@
 
     <!-- Script para cargar datos del usuario y cuentas -->
     <script defer src="/src/js/main.js"></script>
-
 
 </body>
 </html>
