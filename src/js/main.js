@@ -1,40 +1,72 @@
-//Funcion para deshabilitar el boton de recuperar contraseña
+// Función para deshabilitar el botón de recuperación de contraseña
 function deshabilitarBoton() {
     let boton = document.querySelector(".BotonVerificar");
     let mensaje = document.querySelector(".Contrasena");
 
     boton.disabled = true; // Deshabilita el botón
-    mensaje.textContent = "Tu contraseña es: 123456"; // Muestra la contraseña
+    mensaje.textContent = "Tu contraseña es: 123456"; // Muestra la contraseña (esto debe mejorarse para seguridad)
 }
 
+// Función para crear cuenta bancaria
+document.getElementById("crearCuentaForm")?.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-//Funcion para Crear Cuenta Bancaria
-function toggleColorPicker(event) {
-    event.stopPropagation(); // Evita que el evento se propague al body
-    let picker = document.getElementById("colorPicker");
+    let nombre = document.getElementById("nombreCuenta").value.trim();
+    let saldo = parseFloat(document.getElementById("saldoInicial").value);
+    let tipo = document.getElementById("tipoCuenta").value;
+    let color = document.getElementById("colorCuenta").value;
 
-    // Verificar el estado actual y alternarlo
-    if (picker.style.display === "block") {
-        picker.style.display = "none";
-    } else {
-        picker.style.display = "block";
+    if (nombre === "" || isNaN(saldo) || saldo < 0 || tipo === "") {
+        alert("Por favor, completa todos los campos correctamente.");
+        return;
     }
-}
 
-// Función para seleccionar un color y aplicarlo al preview
-function selectColor(color) {
-    let preview = document.getElementById("colorPreview");
-    preview.style.backgroundColor = color;
+    let cuentas = JSON.parse(localStorage.getItem("cuentas")) || [];
 
-    // Ocultar el selector de colores
-    document.getElementById("colorPicker").style.display = "none";
-}
+    if (cuentas.length >= 4) {
+        alert("No puedes crear más de 4 cuentas.");
+        return;
+    }
 
-// Cerrar el selector de colores si el usuario hace clic fuera de él
-document.body.addEventListener("click", function () {
-    document.getElementById("colorPicker").style.display = "none";
+    cuentas.push({ nombre, saldo, tipo, color });
+    localStorage.setItem("cuentas", JSON.stringify(cuentas));
+
+    alert("Cuenta creada con éxito.");
+    window.location.href = "inicio.html";
 });
 
+// Función para cargar cuentas en inicio.html
+function cargarCuentas() {
+    let cuentas = JSON.parse(localStorage.getItem("cuentas")) || [];
+    let contenedorCuentas = document.getElementById("cuentasContainer");
+    let totalDinero = 0;
+
+    if (!contenedorCuentas) return;
+
+    // Limpiar contenido antes de agregar cuentas para evitar duplicaciones
+    contenedorCuentas.innerHTML = "";
+
+    if (cuentas.length === 0) {
+        contenedorCuentas.innerHTML = "<p>No tienes cuentas creadas.</p>";
+        return;
+    }
+
+    cuentas.slice(0, 4).forEach((cuenta) => {
+        totalDinero += cuenta.saldo;
+
+        let cuentaHTML = `
+            <div class="grid-item" style="border-left: 5px solid ${cuenta.color};">
+                <p class="item-title">${cuenta.nombre}</p>
+                <p class="item-amount">$${cuenta.saldo.toFixed(2)}</p>
+            </div>
+        `;
+
+        // Agregar la cuenta sin duplicaciones
+        contenedorCuentas.insertAdjacentHTML("beforeend", cuentaHTML);
+    });
+
+    document.getElementById("totalDinero").textContent = `$${totalDinero.toFixed(2)}`;
+}
 
 
 // Función para registrar usuario
@@ -50,7 +82,6 @@ function register() {
         return;
     }
 
-    // Guardar en LocalStorage
     let userData = {
         username: user,
         email: email,
@@ -88,5 +119,20 @@ function login() {
     }
 }
 
+// Función para cerrar sesión
+function logout() {
+    localStorage.removeItem("user");
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+}
 
-
+// Cargar cuentas al inicio
+document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.getItem("loggedIn")) {
+        cargarCuentas();
+        let user = localStorage.getItem("user");
+        if (user) {
+            document.getElementById("welcomeUser").textContent = "Hola, " + user;
+        }
+    }
+});

@@ -13,32 +13,23 @@
         <!-- Título con nombre del usuario -->
         <h1 class="page-title" id="welcomeUser">Hola, Usuario</h1>
 
-        <!-- Cuadrícula de rectángulos -->
-        <div class="grid-container">
-            <div class="grid-item">
-                <p class="item-title">Ingresos</p>
-                <p class="item-amount">$1,500</p>
-            </div>
-            <div class="grid-item">
-                <p class="item-title">Gastos</p>
-                <p class="item-amount">$750</p>
-            </div>
-            <div class="grid-item">
-                <p class="item-title">Ahorros</p>
-                <p class="item-amount">$500</p>
-            </div>
-            <div class="grid-item-agregar" onclick="window.location.href='crear-cuenta.html'">
-                <p class="item-title">Agregar</p>
-                <img src="/src/assets/plus.svg" alt="Agregar" class="plus-icon">
-            </div>
+        <!-- Cuadrícula de cuentas creadas dinámicamente -->
+        <div class="grid-container" id="cuentasContainer">
+            <!-- Aquí se insertarán dinámicamente las cuentas -->
+        </div>
+
+        <!-- Botón para agregar cuenta -->
+        <div class="grid-item-agregar" onclick="window.location.href='crear-cuenta.html'">
+            <p class="item-title">Agregar</p>
+            <img src="/src/assets/plus.svg" alt="Agregar" class="plus-icon">
         </div>
 
         <!-- Sección de presupuesto -->
-        <h2 class="section-title">Presupuesto</h2>
+        <h2 class="section-title">Saldo Total</h2>
         <div class="budget-container">
             <div class="budget-box">
                 <p>Dinero Total</p>
-                <p class="budget-total">$1,000</p>
+                <p class="budget-total" id="totalDinero">$0</p>
             </div>
         </div>
 
@@ -65,24 +56,9 @@
         </a>
     </div>
 
-    <!-- Script para cargar el nombre del usuario -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let user = localStorage.getItem("user");
-            if (!user) {
-                window.location.href = "login.html";
-            } else {
-                document.getElementById("welcomeUser").textContent = "Hola, " + user;
-            }
-        });
+    <!-- Script para cargar datos del usuario y cuentas -->
+    <script defer src="/src/js/main.js"></script>
 
-        function logout() {
-            localStorage.removeItem("user");
-            localStorage.removeItem("loggedIn");
-            window.location.href = "login.html";
-        }
-    </script>
 
-    <script src="/src/js/chart.js"></script>
 </body>
 </html>

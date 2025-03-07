@@ -5,34 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoneyTrack - Crear Cuenta</title>
   <link rel="stylesheet" href="/src/styles/crear-cuenta.css">
-  <script src="/src/js/main.js"></script>
+  <script defer src="/src/js/main.js"></script> <!-- Ya maneja la lógica de creación -->
 </head>
 <body>
 
     <!-- Flecha de regreso -->
-    <a href="inicio.html" class="back-arrow"></a>
+    <a href="inicio.html" class="back-arrow">←</a>
 
-  <div class="container">
-    <h1 class="title">Crear Cuenta</h1>
+    <div class="container">
+        <h1 class="title">Crear Cuenta</h1>
 
-    <!-- Formulario de creación de cuenta -->
-    <form class="account-form">
-      <input type="text" placeholder="Nombre de la cuenta" required>
-      <input type="number" placeholder="Saldo inicial" required>
-  
-      <select required>
-          <option value="" disabled selected>Selecciona el tipo de cuenta</option>
-          <option value="ahorros">Ahorros</option>
-          <option value="corriente">Corriente</option>
-          <option value="efectivo">Efectivo</option>
-          <option value="otro">Otro</option>
-      </select>
-  
-      
-  
-      <button type="submit">Crear Cuenta</button>
-  </form>
-  
+        <!-- Formulario de creación de cuenta -->
+        <form class="account-form" id="crearCuentaForm">
+            <input type="text" id="nombreCuenta" placeholder="Nombre de la cuenta" required>
+            <input type="number" id="saldoInicial" placeholder="Saldo inicial" required>
+        
+            <select id="tipoCuenta" required>
+                <option value="" disabled selected>Selecciona el tipo de cuenta</option>
+                <option value="ahorros">Ahorros</option>
+                <option value="corriente">Corriente</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="otro">Otro</option>
+            </select>
+        
+            <!-- Selector de color -->
+            <div class="color-selector-container">
+                <label>Color de la cuenta:</label>
+                <input type="color" id="colorCuenta" class="colorselector">
+            </div>
+        
+            <button type="submit">Crear Cuenta</button>
+        </form>
+    </div>
 
 </body>
 </html>
