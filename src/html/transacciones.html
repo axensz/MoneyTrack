@@ -8,9 +8,7 @@
     <script defer src="/src/js/transacciones.js"></script>
 </head>
 <body>
-
     <div class="transactions-container">
-        <!-- Título -->
         <h1 class="page-title">Transacciones</h1>
 
         <!-- Filtros -->
@@ -33,7 +31,7 @@
 
         <!-- Lista de transacciones -->
         <div id="listaTransacciones"></div>
-        <p id="mensajeVacio" class="empty-message" style="display: none;">No hay transacciones para este mes.</p>
+        <p id="mensajeVacio" class="empty-message">No hay transacciones para este mes.</p>
 
         <!-- Total -->
         <div class="total-container">
@@ -47,7 +45,7 @@
             <img src="/src/assets/house.svg" alt="Inicio">
             <span>Inicio</span>
         </a>
-        <a href="transacciones.html" class="nav-item">
+        <a href="transacciones.html" class="nav-item active">
             <img src="/src/assets/money.svg" alt="Transacciones">
             <span>Transacciones</span>
         </a>
@@ -61,6 +59,5 @@
     <div class="floating-button" onclick="location.href='crear-transaccion.html'">
         <img src="/src/assets/plus.svg" alt="+">
     </div>
-
 </body>
 </html>

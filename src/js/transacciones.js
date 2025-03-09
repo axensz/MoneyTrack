@@ -1,80 +1,90 @@
 document.addEventListener("DOMContentLoaded", function () {
-    cargarMeses(); // Cargar los meses en el selector
-    cargarTransacciones();
-    
-    document.getElementById("mesTransaccion").addEventListener("change", cargarTransacciones);
-    document.getElementById("tipoFiltro").addEventListener("change", cargarTransacciones);
+    // Cargar elementos según la página actual
+    if (document.getElementById("mesTransaccion")) {
+        cargarMeses();
+        cargarTransacciones();
+        document.getElementById("mesTransaccion").addEventListener("change", cargarTransacciones);
+        document.getElementById("tipoFiltro").addEventListener("change", cargarTransacciones);
+    }
+
+    if (document.getElementById("cuenta")) {
+        cargarCuentas();
+    }
 });
 
-function cargarMeses() {
-    let selectMes = document.getElementById("mesTransaccion");
-    let meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-    let mesActual = new Date().toLocaleString("es-ES", { month: "long" });
+function cargarCuentas() {
+    const selectCuenta = document.getElementById("cuenta");
+    if (!selectCuenta) return;
 
-    selectMes.innerHTML = "";
-    meses.forEach(mes => {
-        let option = document.createElement("option");
-        option.value = mes;
-        option.textContent = mes.charAt(0).toUpperCase() + mes.slice(1);
-        if (mes === mesActual) {
-            option.selected = true;
-        }
-        selectMes.appendChild(option);
-    });
-}
+    let cuentas = JSON.parse(localStorage.getItem("cuentas")) || [];
+    selectCuenta.innerHTML = '<option value="" disabled selected>Selecciona Cuenta</option>';
 
-function cargarTransacciones() {
-    let transacciones = JSON.parse(localStorage.getItem("transacciones")) || {};
-    let mesSeleccionado = document.getElementById("mesTransaccion").value;
-    let tipoFiltro = document.getElementById("tipoFiltro").value; // Obtiene el tipo seleccionado (todos, ingreso, gasto)
-    let transaccionesContainer = document.getElementById("listaTransacciones");
-    let mensajeVacio = document.getElementById("mensajeVacio");
-    let totalMonto = document.getElementById("totalMonto");
-
-    if (!transaccionesContainer) return;
-
-    // Limpiar contenido previo
-    transaccionesContainer.innerHTML = "";
-    let total = 0;
-
-    if (!transacciones[mesSeleccionado] || transacciones[mesSeleccionado].length === 0) {
-        mensajeVacio.style.display = "block";
-        totalMonto.textContent = "$0.00";
+    if (cuentas.length === 0) {
+        selectCuenta.innerHTML += '<option disabled>No hay cuentas disponibles</option>';
         return;
     }
 
+    cuentas.forEach(cuenta => {
+        selectCuenta.innerHTML += `<option value="${cuenta.nombre}">${cuenta.nombre}</option>`;
+    });
+}
+
+function cargarMeses() {
+    const selectMes = document.getElementById("mesTransaccion");
+    const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", 
+                   "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    const mesActual = new Date().toLocaleString("es-ES", { month: "long" }).toLowerCase();
+
+    selectMes.innerHTML = meses.map(mes => `
+        <option value="${mes}" ${mes === mesActual ? "selected" : ""}>
+            ${mes.charAt(0).toUpperCase() + mes.slice(1)}
+        </option>
+    `).join("");
+}
+
+function cargarTransacciones() {
+    const mesSeleccionado = document.getElementById("mesTransaccion").value;
+    const tipoFiltro = document.getElementById("tipoFiltro").value;
+    const transacciones = JSON.parse(localStorage.getItem("transacciones")) || {};
+    const lista = document.getElementById("listaTransacciones");
+    const mensajeVacio = document.getElementById("mensajeVacio");
+    const totalMonto = document.getElementById("totalMonto");
+
+    lista.innerHTML = "";
     mensajeVacio.style.display = "none";
+    totalMonto.textContent = "$0.00";
 
-    transacciones[mesSeleccionado].forEach(transaccion => {
-        if (tipoFiltro !== "todos" && transaccion.tipo !== tipoFiltro) return; // Filtrar por tipo
+    if (!transacciones[mesSeleccionado]?.length) {
+        mensajeVacio.style.display = "block";
+        return;
+    }
 
-        let transaccionDiv = document.createElement("div");
-        transaccionDiv.classList.add("transaction");
+    let total = 0;
+    const transaccionesFiltradas = transacciones[mesSeleccionado].filter(t => 
+        tipoFiltro === "todos" || t.tipo === tipoFiltro
+    );
 
-        let colorMonto = transaccion.tipo === "ingreso" ? "#4CAF50" : "#F44336"; // Verde para ingresos, rojo para gastos
-        let tipoTexto = transaccion.tipo === "ingreso" ? "Ingreso" : "Gasto";
+    if (!transaccionesFiltradas.length) {
+        mensajeVacio.style.display = "block";
+        return;
+    }
 
-        transaccionDiv.innerHTML = `
-            <img src="/src/assets/house.svg" class="transaction-icon" alt="icono">
-            <div class="transaction-info">
-                <strong>${transaccion.titulo}</strong><br>
-                <small>${transaccion.cuenta} - <span class="tipo-transaccion">${tipoTexto}</span></small>
+    transaccionesFiltradas.forEach(t => {
+        const color = t.tipo === "ingreso" ? "#4CAF50" : "#F44336";
+        lista.innerHTML += `
+            <div class="transaction">
+                <img src="/src/assets/money.svg" class="transaction-icon">
+                <div class="transaction-info">
+                    <strong>${t.titulo}</strong><br>
+                    <small>${t.cuenta} - ${t.tipo}</small>
+                </div>
+                <div class="transaction-amount" style="color: ${color};">
+                    $${parseFloat(t.monto).toFixed(2)}
+                </div>
             </div>
-            <div class="transaction-amount" style="color: ${colorMonto};">$${transaccion.monto.toFixed(2)}</div>
         `;
-
-        transaccionesContainer.appendChild(transaccionDiv);
-
-        // Sumar al total
-        total += transaccion.monto;
+        total += parseFloat(t.monto);
     });
 
-    // Mostrar total
     totalMonto.textContent = `$${total.toFixed(2)}`;
-
-    // Si después de filtrar no hay transacciones, mostrar mensaje de vacío
-    if (transaccionesContainer.innerHTML === "") {
-        mensajeVacio.style.display = "block";
-        totalMonto.textContent = "$0.00";
-    }
 }
