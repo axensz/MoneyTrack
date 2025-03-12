@@ -4,7 +4,7 @@ function register() {
     let email = document.getElementById("regEmail").value.trim();
     let pass = document.getElementById("regPass").value;
     let question = document.getElementById("securityQuestion").value;
-    let answer = document.getElementById("securityAnswer").value.trim();
+    let answer = document.getElementById("securityAnswer").value.trim().toLowerCase(); // Guardar en minúsculas para evitar errores de comparación
 
     if (user === "" || email === "" || pass === "" || question === "" || answer === "") {
         alert("Todos los campos son obligatorios");
@@ -24,6 +24,7 @@ function register() {
     document.getElementById("registerMsg").textContent = "Registro exitoso. ¡Ahora inicia sesión!";
     setTimeout(() => window.location.href = "login.html", 2000);
 }
+
 
 // Función para iniciar sesión
 function login() {
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Función para deshabilitar el botón de recuperación de contraseña
+/*
 function deshabilitarBoton() {
     let boton = document.querySelector(".BotonVerificar");
     let mensaje = document.querySelector(".Contrasena");
@@ -74,6 +76,8 @@ function deshabilitarBoton() {
     boton.disabled = true; // Deshabilita el botón
     mensaje.textContent = "Tu contraseña es: 123456"; // Muestra la contraseña (esto debe mejorarse para seguridad)
 }
+ */
+
 
 // Función para crear cuenta bancaria
 document.getElementById("crearCuentaForm")?.addEventListener("submit", function (event) {
@@ -233,33 +237,76 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Función para cargar la pregunta de seguridad en la página de recuperación
-document.addEventListener("DOMContentLoaded", function () {
-    let storedData = JSON.parse(localStorage.getItem("userData"));
-    
-    if (storedData) {
-        document.getElementById("preguntaSeguridad").textContent = storedData.securityQuestion;
-    } else {
-        document.getElementById("preguntaSeguridad").textContent = "No hay usuario registrado.";
-    }
-});
+// Función para validar si el usuario existe en localStorage
+function validarUsuario() {
+    let inputUser = document.getElementById("usuarioRecuperacion").value.trim();
 
-// Función para verificar la respuesta de seguridad y mostrar la contraseña
-function verificarRespuesta() {
-    let storedData = JSON.parse(localStorage.getItem("userData"));
-    let respuestaIngresada = document.getElementById("respuestaSeguridad").value.trim();
-    let mensaje = document.getElementById("mensajeRecuperacion");
-
-    if (!storedData) {
-        mensaje.textContent = "No hay usuario registrado.";
+    if (inputUser === "") {
+        alert("Por favor, ingresa tu usuario.");
         return;
     }
 
-    if (respuestaIngresada === storedData.securityAnswer) {
-        mensaje.textContent = "Tu contraseña es: " + storedData.password;
-        mensaje.style.color = "green";
+    let storedData = localStorage.getItem("userData");
+
+    if (!storedData) {
+        alert("No hay usuarios registrados.");
+        return;
+    }
+
+    let userData = JSON.parse(storedData);
+
+    if (userData.username === inputUser) {
+        localStorage.setItem("usuarioRecuperando", inputUser);
+        localStorage.setItem("preguntaSeguridad", userData.securityQuestion); // Guardar pregunta
+        localStorage.setItem("respuestaSeguridad", userData.securityAnswer); // Guardar respuesta
+        window.location.href = "OlvidasteContra2.html";
     } else {
-        mensaje.textContent = "Respuesta incorrecta.";
-        mensaje.style.color = "red";
+        alert("El usuario no existe.");
     }
 }
+
+
+
+function mostrarPreguntaSeguridad() {
+    let pregunta = localStorage.getItem("preguntaSeguridad");
+
+    if (!pregunta) {
+        document.getElementById("preguntaSeguridad").textContent = "No se encontró pregunta de seguridad.";
+        return;
+    }
+
+    let preguntasTexto = {
+        "1": "¿Cuál es el nombre de tu mascota?",
+        "2": "¿Cuál es tu ciudad de nacimiento?",
+        "3": "¿Cuál es tu comida favorita?",
+        "4": "¿Cuál es el nombre de tu mejor amigo de la infancia?"
+    };
+
+    document.getElementById("preguntaSeguridad").textContent = preguntasTexto[pregunta] || "Pregunta no encontrada.";
+}
+
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", mostrarPreguntaSeguridad);
+
+
+function validarRespuestaSeguridad() {
+    let respuestaIngresada = document.getElementById("respuestaSeguridad").value.trim().toLowerCase();
+    let respuestaCorrecta = localStorage.getItem("respuestaSeguridad");
+    let contraseñaGuardada = JSON.parse(localStorage.getItem("userData")).password; // Obtener la contraseña
+
+    if (!respuestaCorrecta) {
+        alert("No se encontró respuesta de seguridad.");
+        return;
+    }
+
+    if (respuestaIngresada === respuestaCorrecta) {
+        // Mostrar la contraseña en la pantalla
+        document.getElementById("mensajeRecuperacion").innerHTML = `
+            <p class="success">Tu contraseña es: <strong>${contraseñaGuardada}</strong></p>
+        `;
+    } else {
+        alert("Respuesta incorrecta. Inténtalo de nuevo.");
+    }
+}
+
+
