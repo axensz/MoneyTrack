@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoneyTrack - Agregar Transacción</title>
-  <link rel="stylesheet" href="/src/styles/crear-transaccion.css">
-  <script defer src="/src/js/transacciones.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Transacción</title>
+    <link rel="stylesheet" href="/src/styles/crear-transaccion.css">
+    <script defer src="/src/js/transacciones.js"></script>
 </head>
 <body>
-
-  <!-- Flecha de regreso -->
-  <a href="transacciones.html" class="back-arrow"></a>
-  
-  <div class="container">
-    <h1 class="title">Agregar Transacción</h1>
+    <a href="transacciones.html" class="back-arrow">←</a>
     
-    <!-- Formulario de transacción -->
-    <form id="transactionForm" class="transaction-form">
-      
-      <input type="text" id="titulo" placeholder="Ingresa Título" required>
-      <input type="text" id="monto" placeholder="Valor Transacción" step="0.01" required>
-      
-      <!-- Selección de tipo de movimiento -->
-      <select id="tipoMovimiento" required>
-        <option value="" disabled selected>Selecciona Tipo de Movimiento</option>
-        <option value="ingreso">Ingreso</option>
-        <option value="gasto">Gasto</option>
-      </select>
-      
-      <!-- Selección de cuenta -->
-      <select id="cuenta" required>
-        <option value="" disabled selected>Selecciona Cuenta</option>
-      </select>
+    <div class="container">
+        <h1 class="title">Agregar Transacción</h1>
+        <form id="transactionForm" class="transaction-form">
+            <input type="text" id="titulo" placeholder="Título" required>
+            <input type="text" id="monto" placeholder="Monto" required>
+            <select id="tipoMovimiento" required>
+                <option value="" disabled selected>Tipo de movimiento</option>
+                <option value="ingreso">Ingreso</option>
+                <option value="gasto">Gasto</option>
+            </select>
+            <select id="cuenta" required>
+                <option value="" disabled selected>Cuenta</option>
+            </select>
+            <input type="date" id="fecha" required>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
 
-      <!-- Fecha de la transacción (se sincroniza automáticamente con la actual) -->
-      <input type="date" id="fecha" required>
+    <script>
+        // Formatear monto
+        document.getElementById("monto").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, "");
+            if (value) {
+                const numericValue = Math.min(Number(value), 99999999999);
+                e.target.value = numericValue.toLocaleString("es-ES", { minimumFractionDigits: 2 });
+            }
+        });
 
-      <button type="submit">Crear</button>
+        // Guardar transacción
+        document.getElementById("transactionForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    </form>
+            const titulo = document.getElementById("titulo").value;
+            const monto = parseFloat(document.getElementById("monto").value.replace(/\./g, ""));
+            const tipo = document.getElementById("tipoMovimiento").value;
+            const cuenta = document.getElementById("cuenta").value;
+            const fecha = document.getElementById("fecha").value;
+            const mes = new Date(fecha).toLocaleString("es-ES", { month: "long" }).toLowerCase();
 
-  </div>
+            let transacciones = JSON.parse(localStorage.getItem("transacciones")) || {};
+            if (!transacciones[mes]) transacciones[mes] = [];
 
-  <script>
-    document.getElementById("monto").addEventListener("input", function (event) {
-      let value = event.target.value.replace(/\D/g, ""); // Solo números
-      if (value) {
-          let numericValue = Math.min(Number(value), 99999999999);
-          event.target.value = numericValue.toLocaleString("es-ES");
-      }
-  });
-  
-  </script>
+            transacciones[mes].push({ titulo, monto, tipo, cuenta, fecha });
+            localStorage.setItem("transacciones", JSON.stringify(transacciones));
 
+            window.location.href = "transacciones.html";
+        });
+    </script>
 </body>
 </html>
