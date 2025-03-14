@@ -27,13 +27,21 @@
                 <option value="efectivo">Efectivo</option>
                 <option value="otro">Otro</option>
             </select>
-        
+            
             <!-- Selector de color -->
             <div class="color-selector-container">
                 <label>Color de la cuenta:</label>
-                <input type="color" id="colorCuenta" class="colorselector">
+                <div class="color-options">
+                    <div class="color-option" data-color="#9B02F4"></div>
+                    <div class="color-option" data-color="#F2FF00"></div>
+                    <div class="color-option" data-color="#FF2727"></div>
+                    <div class="color-option" data-color="#122757"></div>
+                    <div class="color-option" data-color="#005C53"></div>
+                    <div class="color-option" data-color="#011F26"></div>
+                </div>
+                <input type="hidden" id="colorCuenta">
             </div>
-        
+            
             <button type="submit">Crear Cuenta</button>
         </form>
     </div>

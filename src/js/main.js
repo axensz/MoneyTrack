@@ -310,3 +310,17 @@ function validarRespuestaSeguridad() {
 }
 
 
+
+//Color cuenta
+document.querySelectorAll(".color-option").forEach(option => {
+    option.style.backgroundColor = option.dataset.color;
+    
+    option.addEventListener("click", function () {
+        document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
+        this.classList.add("selected");
+
+        // Guardar el color seleccionado en el input oculto
+        document.getElementById("colorCuenta").value = this.dataset.color;
+    });
+});
+
