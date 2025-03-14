@@ -1,0 +1,161 @@
+// Variables globales
+$primary-color: #8E46E5;
+$primary-hover: #646464;
+$secondary-color: #D9D9D9;
+$secondary-hover: #5a6268;
+$text-color: #000000;
+$bg-color: #f0f0f0;
+$input-border: #000000;
+
+// Estilos generales
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
+  overflow: hidden;
+}
+
+
+.container-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; 
+  
+  .logo-container {
+    width: 500px;       
+    object-fit: contain; 
+  }
+}
+
+// Resto de tu código...
+
+
+// Contenedor del formulario
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+// Grupo de entrada
+.input-group {
+  width: 100%;
+  margin-bottom: 20px;
+
+  .input-label {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .input-line {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid $input-border;
+    padding-bottom: 10px;
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 10px 0;
+      background-color: transparent;
+    }
+
+    .input-icon {
+      width: 24px;
+      margin: 0 10px;
+      color: $text-color;
+    }
+  }
+}
+
+// Restablecer contraseña
+.forgot-password {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: $text-color;
+  margin-top: 20px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    color: #2f0a5e;
+  }
+}
+
+// Grupo de botones
+.button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .btn-primary {
+    background-color: $primary-color;
+    color: #fff;
+    &:hover {
+      background-color: #4d0b9d;
+    }
+  }
+
+  .btn-secondary {
+    background-color: $secondary-color;
+    color: $text-color;
+    &:hover {
+      background-color: #b7b7b7;
+    }
+  }
+}
+
+// Media Queries para iPhone 14 y 14 Pro
+@media only screen and (max-width: 390px) {
+  .logo {
+    width: 70%;
+  }
+
+  .input-group {
+    .input-label {
+      font-size: 16px;
+    }
+
+    .input-line input {
+      font-size: 14px;
+    }
+  }
+
+  .forgot-password {
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
