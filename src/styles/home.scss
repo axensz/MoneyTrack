@@ -1,0 +1,182 @@
+// src/styles/home.scss
+
+// Variables globales
+$primary-color: #8E46E5;
+$bg-color: #f0f0f0;
+$text-color: #000000;
+$box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+
+
+// Contenedor principal centrado
+.inicio-container {
+  width: 90vw;  
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-bottom: 60px;
+  margin: 0 auto;
+}
+
+.empty-accounts {
+  grid-column: 1 / -1; // Hace que ocupe las dos columnas de la cuadrícula
+  text-align: center;
+  font-size: 14px;
+  color: $text-color; // Usamos la variable definida para el color del texto
+}
+
+// Título principal
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: $text-color;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+// Cuadrícula de cuentas
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+// Estilos de los rectángulos para cuentas
+.grid-item, .grid-item-agregar {
+  padding: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 4px;
+}
+
+.grid-item p,
+.grid-item-agregar p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2; // Ajusta la separación vertical
+}
+
+// Para cada cuenta, se aplica el borde izquierdo con el color pasado mediante la variable CSS --account-color
+.grid-item {
+  background-color: #d1d1d1;
+  color: $text-color;
+  border-left: 5px solid var(--account-color, transparent);
+
+  &:hover {
+    background-color: #bfbfbf;
+  }
+}
+
+.grid-item-agregar {
+  background-color: rgba(209, 209, 209, 0.32);
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: #dfdede;
+  }
+}
+
+.plus-icon {
+  width: 18px;
+  margin-bottom: 10px;
+}
+
+// Sección de presupuesto y títulos
+.section-title, .section-title-2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: $text-color;
+  margin: 10px 0;
+}
+
+.budget-box {
+  width: 100%;
+  background-color: #b0b0b0;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: $text-color;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background-color: #bfbfbf;
+  }
+}
+
+.budget-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+// Contenedor del gráfico
+.chart-container {
+  width: 100%;
+  height: 200px;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+// Botón flotante (si se requiere)
+.floating-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    background-color: $bg-color;
+  }
+}
+
+// Responsive
+@media (max-width: 360px) {
+  .inicio-container {
+    padding: 16px 8px;
+    max-width: 340px;
+  }
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  .chart-container {
+    height: 150px;
+    padding: 2px;
+  }
+}

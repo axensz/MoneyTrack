@@ -1,0 +1,69 @@
+// Variables globales
+$bg-color: #f0f0f0;
+$text-color: #333;
+$shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+$icon-size: 24px;
+$font-size: 12px;
+
+// Variables para el botón flotante
+$floating-color: #8E46E5;   // color morado
+$floating-hover: #732ED0;   // un morado un poco más oscuro
+
+// Botón flotante
+.floating-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: $floating-color !important;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  img {
+    width: $icon-size;
+    height: $icon-size;
+  }
+
+  &:hover {
+    background-color: $floating-hover !important;
+  }
+}
+
+
+// Navbar fija en la parte inferior
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $bg-color;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: $shadow;
+}
+
+// Estilos de cada ítem de navegación
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: $text-color;
+  font-size: $font-size;
+  font-weight: bold;
+
+  img {
+    width: $icon-size;
+    height: $icon-size;
+    margin-bottom: 3px;
+  }
+}
