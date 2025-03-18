@@ -1,63 +1,34 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
 import "../styles/create.scss";
 
 const CrearTransaccion = () => {
     const navigate = useNavigate();
     const [titulo, setTitulo] = useState("");
-    const [monto, setMonto] = useState("");
+    const [monto, setMonto] = useState(""); // Se almacena el valor numérico en formato string
     const [tipo, setTipo] = useState("");
     const [cuenta, setCuenta] = useState("");
     const [fecha, setFecha] = useState("");
     const [cuentas, setCuentas] = useState([]);
 
     useEffect(() => {
-        // Obtener cuentas almacenadas en localStorage
         const cuentasGuardadas = JSON.parse(localStorage.getItem("cuentas")) || [];
         setCuentas(cuentasGuardadas);
     }, []);
 
-    // Función para formatear números a formato decimal con separadores
-    const formatNumber = (value) =>
-        new Intl.NumberFormat("es-ES", {
-            style: "decimal",
-            minimumFractionDigits: 2,
-        }).format(value);
-
-    // Manejar el cambio en el monto
-
-    const handleMontoChange = (e) => {
-        let value = e.target.value.replace(/\D/g, "");
-        if (value) {
-          let numericValue = Math.min(Number(value), 99999999999);
-          setMonto(numericValue.toLocaleString("es-ES"));
-        } else {
-            setMonto("");
-        }
-      };
-
-    // Formatear el monto al perder el foco
-    const handleMontoBlur = () => {
-        const montoSinSeparadores = monto.replace(/\./g, "").replace(",", ".");
-        const numericValue = parseFloat(montoSinSeparadores);
-        if (!isNaN(numericValue)) {
-            setMonto(formatNumber(numericValue));
-        } else {
-            setMonto("");
-        }
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        const montoNumerico = parseFloat(monto.replace(/\./g, "").replace(",", "."));
-        if (isNaN(montoNumerico)) return alert("Monto inválido");
+        const montoNumerico = parseFloat(monto);
+        if (isNaN(montoNumerico) || !titulo.trim() || !tipo || !cuenta || !fecha) {
+            return alert("Todos los campos son obligatorios y el monto debe ser válido.");
+        }
     
         const mes = new Date(fecha).toLocaleString("es-ES", { month: "long" }).toLowerCase();
-    
         let transacciones = JSON.parse(localStorage.getItem("transacciones")) || {};
         if (!transacciones[mes]) transacciones[mes] = [];
     
-        transacciones[mes].push({ titulo, monto: montoNumerico, tipo, cuenta, fecha });
+        transacciones[mes].push({ titulo: titulo.trim(), monto: montoNumerico, tipo, cuenta, fecha });
         localStorage.setItem("transacciones", JSON.stringify(transacciones));
     
         navigate("/transactions");
@@ -75,13 +46,17 @@ const CrearTransaccion = () => {
                     onChange={(e) => setTitulo(e.target.value)} 
                     required 
                 />
-                <input 
-                    type="text" 
-                    placeholder="Monto" 
-                    value={monto} 
-                    onChange={handleMontoChange} 
-                    onBlur={handleMontoBlur} 
-                    required 
+                <NumericFormat 
+                    value={monto}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    allowNegative={false}
+                    placeholder="Monto"
+                    onValueChange={({ value }) => setMonto(value)}
+                    required
+                    className="input-field"
                 />
                 <select value={tipo} onChange={(e) => setTipo(e.target.value)} required>
                     <option value="" disabled>Tipo de movimiento</option>
