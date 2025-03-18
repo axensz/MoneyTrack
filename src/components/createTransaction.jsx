@@ -25,11 +25,16 @@ const CrearTransaccion = () => {
         }).format(value);
 
     // Manejar el cambio en el monto
+
     const handleMontoChange = (e) => {
-        let value = e.target.value.replace(/[^0-9,.]/g, ""); // Solo permite números, comas y puntos
-        value = value.replace(",", "."); // Sustituir coma por punto
-        setMonto(value);
-    };
+        let value = e.target.value.replace(/\D/g, "");
+        if (value) {
+          let numericValue = Math.min(Number(value), 99999999999);
+          setMonto(numericValue.toLocaleString("es-ES"));
+        } else {
+            setMonto("");
+        }
+      };
 
     // Formatear el monto al perder el foco
     const handleMontoBlur = () => {

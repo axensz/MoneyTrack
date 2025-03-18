@@ -2,9 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../styles/transactions.scss";
-import { monthOptions, obtenerTransacciones } from "../utils/transactions";
 import Header from "../components/Header";
-
+import { monthOptions, obtenerTransacciones, formatNumber } from "../utils/transactions";
 
 const Transactions = () => {
   const navigate = useNavigate();
@@ -22,25 +21,33 @@ const Transactions = () => {
   // Función optimizada para cargar transacciones
   const loadTransactions = useCallback(() => {
     if (!selectedMonth) return;
-
+    
+    // Obtener transacciones del mes seleccionado.
+    // Nota: Se espera que en localStorage se guarden con claves numéricas (ej. "03").
     const transaccionesMes = obtenerTransacciones(selectedMonth);
+    
     const filteredTransactions =
       filterType === "todos"
         ? transaccionesMes
-        : transaccionesMes.filter(t => t.tipo === filterType);
+        : transaccionesMes.filter((t) => t.tipo === filterType);
 
     setTransactions(filteredTransactions);
-    setTotalAmount(
-      filteredTransactions.reduce((acc, { monto }) => acc + parseFloat(monto || 0), 0)
-    );
+
+    // Calcular total y mostrarlo por consola para depuración
+    const total = filteredTransactions.reduce((acc, { monto, tipo }) => {
+      const montoNumerico = parseFloat(monto || 0);
+      return tipo === "gasto" ? acc - montoNumerico : acc + montoNumerico;
+    }, 0);
+    
+    //console.log("Total calculado:", total);
+    setTotalAmount(total);
   }, [selectedMonth, filterType]);
 
-  // Cargar transacciones al cambiar el mes o el filtro
   useEffect(() => {
     loadTransactions();
   }, [loadTransactions]);
 
-  // Escucha cambios en localStorage
+  // Escuchar cambios en localStorage
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === "transacciones") {
@@ -55,8 +62,7 @@ const Transactions = () => {
   return (
     <>
       <div className="transactions-container">
-
-      <Header />
+        <Header />
 
         <h1 className="page-title">Transacciones</h1>
         <div className="filters">
@@ -95,13 +101,15 @@ const Transactions = () => {
                 <div className="transaction-info">
                   <strong>{titulo}</strong>
                   <br />
-                  <small>{cuenta} - {tipo}</small>
+                  <small>
+                    {cuenta} - {tipo}
+                  </small>
                 </div>
                 <div
                   className="transaction-amount"
                   style={{ color: tipo === "ingreso" ? "#4CAF50" : "#F44336" }}
                 >
-                  ${parseFloat(monto).toFixed(2)}
+                  ${formatNumber(parseFloat(monto))}
                 </div>
               </div>
             ))
@@ -112,7 +120,8 @@ const Transactions = () => {
           )}
         </div>
         <div className="total-container">
-          <strong>Total:</strong> <span id="totalMonto">${totalAmount.toFixed(2)}</span>
+          <strong>Total:</strong>{" "}
+          <span id="totalMonto">${formatNumber(totalAmount)}</span>
         </div>
       </div>
       <Navbar />
