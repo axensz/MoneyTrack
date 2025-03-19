@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { obtenerCuentas } from "../utils/createAccount";
+import { obtenerTransacciones } from "../utils/transactions";
 import { generateChart } from "../utils/generateChart";
 import "../styles/home.scss";
 import plusIcon from "../assets/plus.svg";
@@ -15,48 +16,67 @@ const Home = () => {
   const [totalBalance, setTotalBalance] = useState(0);
   const chartRef = useRef(null);
 
-  // Función para cargar cuentas y actualizar el total
+  // Carga las cuentas desde localStorage y recalcula el saldo basado en las transacciones
   const loadAccounts = useCallback(() => {
     const cuentas = obtenerCuentas() || [];
-    setAccounts(cuentas);
-    setTotalBalance(cuentas.reduce((sum, cuenta) => sum + (cuenta.saldo || 0), 0));
+    const transaccionesStorage = JSON.parse(localStorage.getItem("transacciones")) || {};
+    
+    const cuentasActualizadas = cuentas.map(acct => {
+      let total = 0;
+      Object.keys(transaccionesStorage).forEach(key => {
+        const transaccionesMes = transaccionesStorage[key] || [];
+        transaccionesMes.forEach(t => {
+          if (t.cuenta.trim().toLowerCase() === acct.nombre.trim().toLowerCase()) {
+            total += t.tipo === "ingreso" ? t.monto : -t.monto;
+          }
+        });
+      });
+      return { ...acct, saldo: total };
+    });
+    
+    setAccounts(cuentasActualizadas);
+    setTotalBalance(cuentasActualizadas.reduce((sum, cuenta) => sum + (cuenta.saldo || 0), 0));
   }, []);
 
+  // Configura el saludo del usuario y carga las cuentas al montar el componente
   useEffect(() => {
     const storedUser = localStorage.getItem("user") || "Usuario";
     setUsername(storedUser);
 
     const hour = new Date().getHours();
-    setGreeting(
-      hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches"
-    );
-
+    setGreeting(hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches");
+    
     loadAccounts();
   }, [loadAccounts]);
 
-  // Escuchar eventos personalizados y cambios en localStorage
+  // Escucha eventos de cambios en cuentas o transacciones para actualizar los datos
   useEffect(() => {
-    const handleCuentasChange = () => loadAccounts();
+    const handleDataChange = () => {
+      loadAccounts();
+    };
     const handleStorageChange = (event) => {
-      if (event.key === "cuentas") loadAccounts();
+      if (event.key === "cuentas" || event.key === "transacciones") loadAccounts();
     };
 
-    window.addEventListener("cuentasChanged", handleCuentasChange);
+    window.addEventListener("cuentasChanged", handleDataChange);
+    window.addEventListener("transaccionesChanged", handleDataChange);
     window.addEventListener("storage", handleStorageChange);
 
     return () => {
-      window.removeEventListener("cuentasChanged", handleCuentasChange);
+      window.removeEventListener("cuentasChanged", handleDataChange);
+      window.removeEventListener("transaccionesChanged", handleDataChange);
       window.removeEventListener("storage", handleStorageChange);
     };
   }, [loadAccounts]);
 
-  // Actualizar el gráfico cuando cambien las cuentas
+  // Genera o actualiza el gráfico cuando las cuentas cambian
   useEffect(() => {
     if (chartRef.current && accounts.length > 0) {
-      generateChart(chartRef.current);
+      generateChart(chartRef.current, accounts);
     }
   }, [accounts]);
 
+  // Formatea los valores numéricos a un formato de moneda legible
   const formatNumber = (value) =>
     new Intl.NumberFormat("es-ES", {
       style: "decimal",
@@ -92,7 +112,10 @@ const Home = () => {
         </div>
 
         {accounts.length < 4 && (
-          <div className="grid-item-agregar" onClick={() => navigate("/createaccount")}>
+          <div
+            className="grid-item-agregar"
+            onClick={() => navigate("/createaccount")}
+          >
             <p className="item-title">Agregar</p>
             <img src={plusIcon} alt="Agregar" className="plus-icon" />
           </div>
@@ -101,7 +124,9 @@ const Home = () => {
         <h2 className="section-title">Saldo Total</h2>
         <div className="budget-container">
           <div className="budget-box">
-            <p className="budget-total" id="totalDinero">{formatNumber(totalBalance)}</p>
+            <p className="budget-total" id="totalDinero">
+              ${formatNumber(totalBalance)}
+            </p>
           </div>
         </div>
 

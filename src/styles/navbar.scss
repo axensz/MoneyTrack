@@ -6,8 +6,9 @@ $icon-size: 24px;
 $font-size: 12px;
 
 // Variables para el botón flotante
-$floating-color: #8E46E5;   // color morado
-$floating-hover: #732ED0;   // un morado un poco más oscuro
+// Definimos el color base y en el estado normal usaremos una versión semitransparente
+$floating-color: #8E46E5;   // color morado (opaco)
+$floating-trans: rgba(142,70,229,0.7); // versión semitransparente
 
 // Botón flotante
 .floating-button {
@@ -16,7 +17,7 @@ $floating-hover: #732ED0;   // un morado un poco más oscuro
   right: 20px;
   width: 50px;
   height: 50px;
-  background-color: $floating-color !important;
+  background-color: $floating-trans !important;  // fondo semitransparente
   border: 2px solid #ccc;
   border-radius: 10px;
   display: flex;
@@ -32,10 +33,9 @@ $floating-hover: #732ED0;   // un morado un poco más oscuro
   }
 
   &:hover {
-    background-color: $floating-hover !important;
+    background-color: $floating-color !important; // al pasar el mouse se muestra el color opaco
   }
 }
-
 
 // Navbar fija en la parte inferior
 .navbar {

@@ -1,21 +1,20 @@
 import Chart from "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { obtenerDatosGrafico } from "./createAccount"; 
-// Suponiendo que en createAccount.js tienes la función obtenerDatosGrafico()
 
-export function generateChart(canvas) {
-  if (!canvas) return;
-  
-  // Obtener datos para el gráfico: nombres, saldos y colores de las cuentas
-  const { nombres, saldos, colores } = obtenerDatosGrafico();
-  if (!nombres.length) return;
+export function generateChart(canvas, cuentas) {
+  if (!canvas || !cuentas.length) return;
+
+  // Extraer datos actualizados
+  const nombres = cuentas.map((c) => c.nombre);
+  const saldos = cuentas.map((c) => c.saldo);
+  const colores = cuentas.map((c) => c.color);
 
   // Destruir el gráfico previo si existe
   if (window.budgetChart instanceof Chart) {
     window.budgetChart.destroy();
   }
 
-  // Crear un formateador para mostrar los saldos con dos decimales
+  // Formateador para los números
   const formatter = new Intl.NumberFormat("es-ES", {
     style: "decimal",
     minimumFractionDigits: 2,
@@ -40,15 +39,23 @@ export function generateChart(canvas) {
         legend: { display: false },
         tooltip: { enabled: true },
         datalabels: {
+          font: { 
+            weight : "normal", 
+            size: 14
+          },
           color: "#000",
           anchor: "end",
           align: "top",
-          formatter: (value, context) => formatter.format(value),
+          formatter: (value) => "$"+ formatter.format(value),
         },
       },
       scales: {
         y: {
           beginAtZero: true,
+          suggestedMax: Math.max(...saldos) * 1.2, // Aumenta el límite superior un 20%
+          ticks: {
+            callback: (value) => formatter.format(value), // Asegura que se muestren los valores correctamente
+          },
         },
       },
     },

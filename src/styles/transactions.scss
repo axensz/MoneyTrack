@@ -68,12 +68,35 @@ $box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   background-color: #ddd;
   margin: 15px 0;
 }
-
-// Lista de transacciones
 #listaTransacciones {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
+  padding-right: 10px; // Espacio interno para separar el contenido del borde derecho
+  /* Para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #5b5b5b #f0f0f0; /* thumb morado, track fondo claro */
 }
+
+/* Para navegadores basados en Webkit */
+#listaTransacciones::-webkit-scrollbar {
+  width: 10px;
+}
+
+#listaTransacciones::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 5px;
+  margin-right: 4px; // Margen adicional a la derecha del track
+}
+
+#listaTransacciones::-webkit-scrollbar-thumb {
+  background: #8E46E5;
+  border-radius: 5px;
+}
+
+#listaTransacciones::-webkit-scrollbar-thumb:hover {
+  background: #732ED0;
+}
+
 
 // Transacción individual
 .transaction {

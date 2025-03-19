@@ -10,12 +10,11 @@ $box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 // Contenedor principal centrado
 .inicio-container {
   width: 90vw;  
-  height: 90vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 10px;
-  padding-bottom: 60px;
   margin: 0 auto;
 }
 
