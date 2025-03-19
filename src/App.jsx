@@ -10,6 +10,7 @@ import Account from "./components/account";
 import AccountConfig from "./components/accountConfig";
 import CreateAccount from "./components/createBankAccount";
 import CreateTransaction from "./components/createTransaction";
+import BankAccount from './components/bankAccount';
 
 
 
@@ -46,6 +47,9 @@ function App() {
 
         {/* Ruta de creacion cuentas bancarias */}
         <Route path="/createaccount" element={<CreateAccount />} />
+
+        {/* Ruta de cuenta bancaria */}
+        <Route path="/account/:bankName" element={<BankAccount/>} />
 
         {/* Ruta de creacion de transacciones */}
         <Route path="/createtransaction" element={<CreateTransaction />} />

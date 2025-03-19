@@ -1,0 +1,161 @@
+// Variables globales
+$primary-color: #8E46E5;
+$bg-color: #f0f0f0;
+$text-color: #333;
+$box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+
+// Contenedor principal
+.bank-account-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+// Flecha de regreso
+.back-arrow {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/arrow.svg") no-repeat center;
+    background-size: contain;
+    text-decoration: none;
+    display: block;
+}
+
+
+// Título del banco
+.bank-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+// Resumen de ingresos y gastos
+.summary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ingreso {
+  color: #4CAF50;
+}
+
+.gasto {
+  color: #F44336;
+}
+
+// Línea divisoria
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  margin: 15px 0;
+}
+
+// Lista de transacciones
+#listaTransacciones {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #5b5b5b #f0f0f0;
+}
+
+#listaTransacciones::-webkit-scrollbar {
+  width: 10px;
+}
+
+#listaTransacciones::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 5px;
+  margin-right: 4px;
+}
+
+#listaTransacciones::-webkit-scrollbar-thumb {
+  background: #8E46E5;
+  border-radius: 5px;
+}
+
+#listaTransacciones::-webkit-scrollbar-thumb:hover {
+  background: #732ED0;
+}
+
+// Transacción individual
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.transaction-info {
+  flex-grow: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.transaction-amount {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+// Contenedor del total
+.total-container {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid #ddd;
+}
+
+// Mensaje vacío
+.empty-message {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+  margin-top: 20px;
+}
+
+// Responsive
+@media (max-width: 360px) {
+  .bank-account-container {
+    width: 95%;
+    padding: 16px 8px;
+    max-width: 340px;
+  }
+  .summary {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .transaction {
+    padding: 10px;
+  }
+  .transaction-info, .transaction-amount {
+    font-size: 14px;
+  }
+  .total-container {
+    font-size: 16px;
+  }
+}

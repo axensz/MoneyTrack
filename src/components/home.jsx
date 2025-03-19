@@ -2,7 +2,6 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { obtenerCuentas } from "../utils/createAccount";
-import { obtenerTransacciones } from "../utils/transactions";
 import { generateChart } from "../utils/generateChart";
 import "../styles/home.scss";
 import plusIcon from "../assets/plus.svg";
@@ -20,7 +19,7 @@ const Home = () => {
   const loadAccounts = useCallback(() => {
     const cuentas = obtenerCuentas() || [];
     const transaccionesStorage = JSON.parse(localStorage.getItem("transacciones")) || {};
-    
+
     const cuentasActualizadas = cuentas.map(acct => {
       let total = 0;
       Object.keys(transaccionesStorage).forEach(key => {
@@ -33,7 +32,7 @@ const Home = () => {
       });
       return { ...acct, saldo: total };
     });
-    
+
     setAccounts(cuentasActualizadas);
     setTotalBalance(cuentasActualizadas.reduce((sum, cuenta) => sum + (cuenta.saldo || 0), 0));
   }, []);
@@ -45,7 +44,7 @@ const Home = () => {
 
     const hour = new Date().getHours();
     setGreeting(hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches");
-    
+
     loadAccounts();
   }, [loadAccounts]);
 
@@ -97,7 +96,7 @@ const Home = () => {
               <div
                 key={index}
                 className="grid-item"
-                onClick={() => navigate(`/cuenta/${index}`)}
+                onClick={() => navigate(`/account/${cuenta.nombre}`)}
                 style={{ "--account-color": cuenta.color }}
               >
                 <p className="item-title">{cuenta.nombre}</p>

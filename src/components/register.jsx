@@ -1,88 +1,147 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../utils/auth"; // Asegúrate de que apunte al archivo correcto
+import Select from "react-select";
+import { register } from "../utils/auth"; 
 import "../styles/register.scss";
-import "../styles/modal.scss"; // Agrega estilos para el modal
+import "../styles/modal.scss"; 
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState(null);
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  const questionOptions = [
+    { value: "1", label: "¿Cuál es el nombre de tu mascota?" },
+    { value: "2", label: "¿Cuál es tu ciudad de nacimiento?" },
+    { value: "3", label: "¿Cuál es tu comida favorita?" },
+    { value: "4", label: "¿Cuál es el nombre de tu mejor amigo de la infancia?" },
+  ];
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      minHeight: "50px",
+      fontSize: "18px",
+      border: "none",
+      borderBottom: "2px solid #5f5f5f",
+      boxShadow: "none",
+      color: "#000",
+      backgroundColor: "transparent",
+      padding: "5px",
+      whiteSpace: "normal",
+      wordBreak: "break-word",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      fontSize: "18px",
+      padding: "10px",
+      borderRadius: "12px",
+      overflow: "visible",
+      whiteSpace: "normal",
+      wordBreak: "break-word",
+    }),
+    option: (provided) => ({
+      ...provided,
+      fontSize: "18px",
+      padding: "12px",
+      color: "#000",
+      backgroundColor: "#fff",
+      borderRadius: "12px",
+      whiteSpace: "normal",
+      wordBreak: "break-word",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      whiteSpace: "normal",
+      wordBreak: "break-word",
+      textOverflow: "ellipsis",
+      overflow: "hidden",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      fontSize: "18px",
+      color: "#000",
+    }),
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
-    const result = register(username, email, password, question, answer);
+    const result = register(username, email, password, question?.value, answer);
 
     setMessage(result.message);
-    setIsModalOpen(true); // Mostrar el modal
+    setIsModalOpen(true);
 
     if (result.success) {
       setTimeout(() => {
         setIsModalOpen(false);
         navigate("/login");
-      }, 3000); // Cerrar el modal y redirigir
+      }, 3000);
     }
   };
 
   return (
-    <div className="container">
+    <>
+      <div className="container">
       <a href="/login" className="back-arrow"></a>
-      <h1 className="title">Registrarme</h1>
+        <h1 className="title">Registrarme</h1>
 
-      <form className="register-form" onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Correo Electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <select value={question} onChange={(e) => setQuestion(e.target.value)} required>
-          <option value="" disabled>Selecciona una pregunta de seguridad</option>
-          <option value="1">¿Cuál es el nombre de tu mascota?</option>
-          <option value="2">¿Cuál es tu ciudad de nacimiento?</option>
-          <option value="3">¿Cuál es tu comida favorita?</option>
-          <option value="4">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Respuesta"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          required
-        />
+        <form className="register-form" onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Correo Electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button type="submit">Registrarme</button>
-      </form>
+          <Select
+            placeholder="Selecciona una pregunta de seguridad"
+            options={questionOptions}
+            value={question}
+            onChange={setQuestion}
+            styles={customStyles}
+            isSearchable={false}
+          />
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>{message}</p>
+          <input
+            type="text"
+            placeholder="Respuesta"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            required
+          />
+
+          <button type="submit">Registrarme</button>
+        </form>
+
+        {isModalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <p>{message}</p>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 
