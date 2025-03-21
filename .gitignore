@@ -7,18 +7,48 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencias de Node.js
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+# Archivos de compilación y salida
+dist/
+dist-ssr/
+*.local
+.vite/
+.out/
+build/
+
+# Archivos de configuración específicos de herramientas
+.vscode/
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Sass y cache
+.sass-cache/
+*.scssc
+*.map
+
+# Archivos de entorno
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Caché de Linting
+.eslintcache
+
+# Archivos generados por pruebas
+coverage/
+jest/
