@@ -36,7 +36,6 @@ const CrearTransaccion = () => {
 
     return (
         <div className="container">
-            <a href="/transactions" className="back-arrow">&larr;</a>
             <h1 className="title">Agregar Transacción</h1>
             <form id="transactionForm" className="account-form" onSubmit={handleSubmit}>
                 <input 
@@ -75,7 +74,8 @@ const CrearTransaccion = () => {
                     onChange={(e) => setFecha(e.target.value)} 
                     required 
                 />
-                <button type="submit">Guardar</button>
+                <button type="submit" >Guardar</button>
+                <button type="button" className="submit-btn" onClick={() => navigate('/home')}>Volver</button>
             </form>
         </div>
     );

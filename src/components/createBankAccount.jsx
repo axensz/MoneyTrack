@@ -50,7 +50,6 @@ const CrearCuentaBancaria = () => {
 
   return (
     <div className="container">
-      <a href="/home" className="back-arrow"></a>
       <h1 className="title">Crear Cuenta Bancaria</h1>
       <form className="account-form" onSubmit={handleSubmit}>
         <input
@@ -101,6 +100,7 @@ const CrearCuentaBancaria = () => {
           </div>
         </div>
         <button type="submit">Crear Cuenta</button>
+        <button type="button" className="submit-btn" onClick={() => navigate('/home')}>Volver</button>
       </form>
       {isModalOpen && (
         <div className="modal">

@@ -4,7 +4,6 @@ $primary-hover: #A860FF;
 $secondary-color: #5f5f5f;
 $text-color: #000000;
 $bg-color: #d2d1d140;
-$border-radius: 10px;
 
 
 // Contenedor principal
@@ -15,19 +14,9 @@ $border-radius: 10px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  padding: 0 !important;
 }
 
-// Flecha de regreso
-.back-arrow {
-  position: absolute;
-  top: 20px;
-  left: 10px;
-  width: 24px;
-  height: 24px;
-  background: url('src/assets/arrow.svg') no-repeat center;
-  background-size: contain;
-  text-decoration: none;
-}
 
 // Título
 .title {
@@ -130,6 +119,25 @@ $border-radius: 10px;
     &:hover {
       background-color: $primary-hover;
     }
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 100px;
+  font-size: 18px;
+  font-weight: 100;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  margin-top: 10px;
+  display: block;
+  align-self: center;
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 }
 
