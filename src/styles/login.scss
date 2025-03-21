@@ -10,10 +10,8 @@ $input-border: #000000;
 // Estilos generales
 html, body {
   height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,9 +31,6 @@ html, body {
     object-fit: contain; 
   }
 }
-
-// Resto de tu código...
-
 
 // Contenedor del formulario
 .form-container {

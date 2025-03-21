@@ -4,6 +4,7 @@ import Select from "react-select";
 import { register } from "../utils/auth"; 
 import "../styles/register.scss";
 import "../styles/modal.scss"; 
+import { color } from "chart.js/helpers";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -23,51 +24,28 @@ function Register() {
   ];
 
   const customStyles = {
+    container: (provided) => ({
+      ...provided,
+      width: '350px',
+    }),
     control: (provided) => ({
       ...provided,
-      minHeight: "50px",
-      fontSize: "18px",
-      border: "none",
-      borderBottom: "2px solid #5f5f5f",
-      boxShadow: "none",
-      color: "#000",
-      backgroundColor: "transparent",
-      padding: "5px",
-      whiteSpace: "normal",
-      wordBreak: "break-word",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      fontSize: "18px",
-      padding: "10px",
-      borderRadius: "12px",
-      overflow: "visible",
-      whiteSpace: "normal",
-      wordBreak: "break-word",
-    }),
-    option: (provided) => ({
-      ...provided,
-      fontSize: "18px",
-      padding: "12px",
-      color: "#000",
-      backgroundColor: "#fff",
-      borderRadius: "12px",
-      whiteSpace: "normal",
-      wordBreak: "break-word",
+      width: '350px',
+      minHeight: '30px',
+      padding: '10px', 
+      color: 'black',
+    fontWeight: 'semibold',
     }),
     singleValue: (provided) => ({
       ...provided,
-      whiteSpace: "normal",
-      wordBreak: "break-word",
-      textOverflow: "ellipsis",
-      overflow: "hidden",
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      fontSize: "18px",
-      color: "#000",
+      whiteSpace: 'normal',
+      wordBreak: 'break-word', 
     }),
   };
+  
+  
+  
+  
 
   const handleRegister = (e) => {
     e.preventDefault();

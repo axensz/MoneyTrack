@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/auth";
-import "../styles/accountConfig.scss";
 
 function AccountConfig() {
   const navigate = useNavigate();
