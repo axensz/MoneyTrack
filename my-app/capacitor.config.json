@@ -1,0 +1,10 @@
+{
+  "appId": "com.moneytrack.app",
+  "appName": "Money Track",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
