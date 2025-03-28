@@ -1,11 +1,5 @@
 {
-  "appId": "com.moneytrack.app",
+  "appId": "com.moneytrackupb.app",
   "appName": "MoneyTrack",
-  "webDir": "dist",
-  "bundledWebRuntime": false,
-  "plugins": {
-    "Keyboard": {
-      "resize": "none"
-    }
-  }
+  "webDir": "dist"
 }
