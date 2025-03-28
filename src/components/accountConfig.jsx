@@ -6,7 +6,6 @@ function AccountConfig() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [isModified, setIsModified] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -23,25 +22,6 @@ function AccountConfig() {
       setEmail(userData.email);
     }
   }, [navigate]);
-
-  const handleChange = (setter) => (e) => {
-    setter(e.target.value);
-    setIsModified(true);
-  };
-
-  const handleSave = () => {
-    if (isModified) {
-      console.log("Datos guardados:", { name, email });
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const updatedUsers = users.map((user) =>
-        user.username === name ? { ...user, email } : user
-      );
-
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-      setIsModified(false);
-    }
-  };
 
   return (
     <div className="form-container">
@@ -63,7 +43,7 @@ function AccountConfig() {
           <label className="input-label">Correo Electrónico</label>
           <div className="input-line">
             <img src="src/assets/mail.svg" alt="Mail Icon" className="input-icon" />
-            <input type="email" value={email} onChange={handleChange(setEmail)} />
+            <input type="email" id="email-input" value={email} disabled />
           </div>
         </div>
       </form>
