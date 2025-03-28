@@ -1,12 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../styles/transactions.scss";
 import Header from "../components/Header";
 import { monthOptions, obtenerTransacciones, formatNumber } from "../utils/transactions";
 
 const Transactions = () => {
-  const navigate = useNavigate();
   const [transactions, setTransactions] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectedMonth, setSelectedMonth] = useState("");
