@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/auth";
 
+// Importar imágenes correctamente
+import userIcon from "../assets/user.svg";
+import mailIcon from "../assets/mail.svg";
+
 function AccountConfig() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -33,7 +37,7 @@ function AccountConfig() {
         <div className="input-group">
           <label className="input-label">Nombre</label>
           <div className="input-line">
-            <img src="src/assets/user.svg" alt="User Icon" className="input-icon" />
+            <img src={userIcon} alt="User Icon" className="input-icon" />
             <input type="text" value={name} disabled />
           </div>
         </div>
@@ -42,7 +46,7 @@ function AccountConfig() {
         <div className="input-group">
           <label className="input-label">Correo Electrónico</label>
           <div className="input-line">
-            <img src="src/assets/mail.svg" alt="Mail Icon" className="input-icon" />
+            <img src={mailIcon} alt="Mail Icon" className="input-icon" />
             <input type="email" id="email-input" value={email} disabled />
           </div>
         </div>

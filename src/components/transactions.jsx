@@ -1,29 +1,23 @@
 import { useState, useEffect, useCallback } from "react";
 import Navbar from "../components/navbar";
-import "../styles/transactions.scss";
 import Header from "../components/Header";
+import "../styles/transactions.scss";
 import { monthOptions, obtenerTransacciones, formatNumber } from "../utils/transactions";
 
 const Transactions = () => {
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    return (new Date().getMonth() + 1).toString().padStart(2, "0");
+  });
+  const [filterType, setFilterType] = useState("todos");
   const [transactions, setTransactions] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [filterType, setFilterType] = useState("todos");
 
-  // Inicializamos el mes seleccionado al mes actual
-  useEffect(() => {
-    const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, "0");
-    setSelectedMonth(currentMonth);
-  }, []);
-
-  // Función optimizada para cargar transacciones
   const loadTransactions = useCallback(() => {
     if (!selectedMonth) return;
-    
-    // Obtener transacciones del mes seleccionado.
-    // Nota: Se espera que en localStorage se guarden con claves numéricas (ej. "03").
-    const transaccionesMes = obtenerTransacciones(selectedMonth);
-    
+
+    let transaccionesMes = obtenerTransacciones(selectedMonth);
+    if (!Array.isArray(transaccionesMes)) transaccionesMes = [];
+
     const filteredTransactions =
       filterType === "todos"
         ? transaccionesMes
@@ -31,25 +25,29 @@ const Transactions = () => {
 
     setTransactions(filteredTransactions);
 
-    // Calcular total y mostrarlo por consola para depuración
     const total = filteredTransactions.reduce((acc, { monto, tipo }) => {
-      const montoNumerico = parseFloat(monto || 0);
+      const montoNumerico = parseFloat(monto) || 0;
       return tipo === "gasto" ? acc - montoNumerico : acc + montoNumerico;
     }, 0);
-    
-    //console.log("Total calculado:", total);
+
     setTotalAmount(total);
   }, [selectedMonth, filterType]);
 
   useEffect(() => {
     loadTransactions();
-  }, [loadTransactions]);
+  }, [selectedMonth, filterType, loadTransactions]);
 
-  // Escuchar cambios en localStorage
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === "transacciones") {
-        loadTransactions();
+        try {
+          const nuevasTransacciones = JSON.parse(e.newValue);
+          if (Array.isArray(nuevasTransacciones)) {
+            loadTransactions();
+          }
+        } catch (error) {
+          console.error("Error al parsear transacciones:", error);
+        }
       }
     };
 
@@ -61,8 +59,8 @@ const Transactions = () => {
     <>
       <div className="transactions-container">
         <Header />
-
         <h1 className="page-title">Transacciones</h1>
+
         <div className="filters">
           <div className="month-selector">
             <label htmlFor="mesTransaccion">Mes:</label>
@@ -78,6 +76,7 @@ const Transactions = () => {
               ))}
             </select>
           </div>
+
           <div className="type-selector">
             <label htmlFor="tipoFiltro">Tipo:</label>
             <select
@@ -91,6 +90,7 @@ const Transactions = () => {
             </select>
           </div>
         </div>
+
         <div className="divider"></div>
         <div id="listaTransacciones">
           {transactions.length > 0 ? (
@@ -99,9 +99,7 @@ const Transactions = () => {
                 <div className="transaction-info">
                   <strong>{titulo}</strong>
                   <br />
-                  <small>
-                    {cuenta} - {tipo}
-                  </small>
+                  <small>{cuenta} - {tipo}</small>
                 </div>
                 <div
                   className="transaction-amount"
@@ -117,6 +115,7 @@ const Transactions = () => {
             </p>
           )}
         </div>
+
         <div className="total-container">
           <strong>Total:</strong>{" "}
           <span id="totalMonto">${formatNumber(totalAmount)}</span>
