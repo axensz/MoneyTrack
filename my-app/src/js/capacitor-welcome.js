@@ -92,7 +92,7 @@ window.customElements.define(
     connectedCallback() {
       const self = this;
 
-      self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function (e) {
+      self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function () {
         try {
           const photo = await Camera.getPhoto({
             resultType: 'uri',

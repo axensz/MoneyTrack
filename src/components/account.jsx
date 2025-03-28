@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/navbar";
-import logoMonogram from "../assets/logoMonogram.svg"; // Asegurar que la ruta es correcta
-import { logout } from "../utils/auth"; // Importar la función de logout
+import Navbar from "../components/navbar";import { logout } from "../utils/auth"; // Importar la función de logout
 import "../styles/account.scss";
 import Header from "../components/Header";
 

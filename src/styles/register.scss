@@ -23,17 +23,7 @@ $border-radius: 10px;
   position: relative;
 }
 
-/* Flecha de regreso */
-.back-arrow {
-  position: absolute;
-  top: 1.5rem;
-  width: 24px;
-  height: 24px;
-  background: url("../assets/arrow.svg") no-repeat center;
-  background-size: contain;
-  text-decoration: none;
-  display: block;
-}
+
 
 /* Título */
 .title {
