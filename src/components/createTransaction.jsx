@@ -5,11 +5,12 @@ import "../styles/create.scss";
 
 const CrearTransaccion = () => {
     const navigate = useNavigate();
+    const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
     const [titulo, setTitulo] = useState("");
-    const [monto, setMonto] = useState(""); // Se almacena el valor numérico en formato string
+    const [monto, setMonto] = useState(""); 
     const [tipo, setTipo] = useState("");
     const [cuenta, setCuenta] = useState("");
-    const [fecha, setFecha] = useState("");
+    const [fecha, setFecha] = useState(today); // Se inicializa con la fecha de hoy
     const [cuentas, setCuentas] = useState([]);
 
     useEffect(() => {
@@ -23,14 +24,14 @@ const CrearTransaccion = () => {
         if (isNaN(montoNumerico) || !titulo.trim() || !tipo || !cuenta || !fecha) {
             return alert("Todos los campos son obligatorios y el monto debe ser válido.");
         }
-    
+
         const mes = new Date(fecha).toLocaleString("es-ES", { month: "long" }).toLowerCase();
         let transacciones = JSON.parse(localStorage.getItem("transacciones")) || {};
         if (!transacciones[mes]) transacciones[mes] = [];
-    
+
         transacciones[mes].push({ titulo: titulo.trim(), monto: montoNumerico, tipo, cuenta, fecha });
         localStorage.setItem("transacciones", JSON.stringify(transacciones));
-    
+
         navigate("/transactions");
     };
 
@@ -74,7 +75,7 @@ const CrearTransaccion = () => {
                     onChange={(e) => setFecha(e.target.value)} 
                     required 
                 />
-                <button type="submit" >Guardar</button>
+                <button type="submit">Guardar</button>
                 <button type="button" className="submit-btn" onClick={() => navigate('/home')}>Volver</button>
             </form>
         </div>

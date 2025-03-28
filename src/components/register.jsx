@@ -25,20 +25,33 @@ function Register() {
   const customStyles = {
     container: (provided) => ({
       ...provided,
-      width: '100%',
+      width: "350px", // Tamaño fijo
+      margin: "0 auto", // Centrado horizontal
     }),
     control: (provided) => ({
       ...provided,
-      width: '100%',
-      minHeight: '40px',
-      padding: '5px',
+      width: "100%",
+      height: "50px", // Altura fija
+      padding: "5px",
+      display: "flex",
+      alignItems: "center",
     }),
     singleValue: (provided) => ({
       ...provided,
-      whiteSpace: 'normal',
-      wordBreak: 'break-word',
+      whiteSpace: "normal",
+      wordWrap: "break-word",
+      overflow: "visible", // Evita corte del texto
+    }),
+    menu: (provided) => ({
+      ...provided,
+      width: "350px", // Asegura que el menú no cambie de tamaño
+      wordWrap: "break-word",
+      margin: "0 auto", // Centrar menú
+      textAlign: "center", // Centrar texto en el menú
     }),
   };
+  
+  
 
   const handleRegister = (e) => {
     e.preventDefault();
