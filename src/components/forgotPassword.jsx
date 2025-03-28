@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { getSecurityQuestion, validateSecurityAnswer } from "../utils/auth";
 import "../styles/forgotPassword.scss";
 
+// Importar imágenes correctamente
+import userIcon from "../assets/user.svg";
+import questionIcon from "../assets/question.svg";
+
 function ForgotPassword() {
   const [step, setStep] = useState(1); // 1: Ingresar usuario, 2: Responder pregunta
   const [username, setUsername] = useState("");
@@ -50,7 +54,7 @@ function ForgotPassword() {
           <p>Coloca tu usuario</p>
           <div className="input-group">
             <div className="input-line">
-              <img src="/src/assets/user.svg" alt="User Icon" className="input-icon" />
+              <img src={userIcon} alt="User Icon" className="input-icon" />
               <input
                 type="text"
                 placeholder="Usuario"
@@ -68,7 +72,7 @@ function ForgotPassword() {
           <h3>{question}</h3>
           <div className="input-group">
             <div className="input-line">
-              <img src="/src/assets/question.svg" alt="Question Icon" className="input-icon" />
+              <img src={questionIcon} alt="Question Icon" className="input-icon" />
               <input
                 type="text"
                 placeholder="Ingresa tu respuesta"

@@ -1,6 +1,8 @@
 import React from "react";
-import logoMonogram from "../assets/logoMonogram.svg";
 import "../styles/header.scss";
+
+import logoMonogram from "../assets/logoMonogram.svg";
+
 
 const Header = () => {
   return (
