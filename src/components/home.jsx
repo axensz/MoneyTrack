@@ -17,33 +17,59 @@ const Home = () => {
 
   // Carga las cuentas desde localStorage y recalcula el saldo basado en las transacciones
   const loadAccounts = useCallback(() => {
+    console.log("Ejecutando loadAccounts...");
     const cuentas = obtenerCuentas() || [];
-    const transaccionesStorage = JSON.parse(localStorage.getItem("transacciones")) || {};
+    console.log("Cuentas obtenidas:", cuentas);
+
+    const transaccionesStorage =
+      JSON.parse(localStorage.getItem("transacciones")) || {};
+    console.log("Transacciones obtenidas:", transaccionesStorage);
 
     const cuentasActualizadas = cuentas.map(acct => {
-      let total = 0;
+      // Inicia con el saldo almacenado en la cuenta
+      let total = acct.saldo || 0;
+      console.log(`Cuenta ${acct.nombre} - Saldo inicial:`, total);
+
       Object.keys(transaccionesStorage).forEach(key => {
         const transaccionesMes = transaccionesStorage[key] || [];
         transaccionesMes.forEach(t => {
-          if (t.cuenta.trim().toLowerCase() === acct.nombre.trim().toLowerCase()) {
-            total += t.tipo === "ingreso" ? t.monto : -t.monto;
+          if (
+            t.cuenta.trim().toLowerCase() ===
+            acct.nombre.trim().toLowerCase()
+          ) {
+            const montoTransaccion = t.tipo === "ingreso" ? t.monto : -t.monto;
+            total += montoTransaccion;
+            console.log(
+              `Cuenta ${acct.nombre}: Se ${t.tipo === "ingreso" ? "suma" : "resta"} ${t.monto} (Total actual: ${total})`
+            );
           }
         });
       });
       return { ...acct, saldo: total };
     });
 
+    console.log("Cuentas actualizadas:", cuentasActualizadas);
     setAccounts(cuentasActualizadas);
-    setTotalBalance(cuentasActualizadas.reduce((sum, cuenta) => sum + (cuenta.saldo || 0), 0));
+
+    const totalBalanceCalculado = cuentasActualizadas.reduce(
+      (sum, cuenta) => sum + (cuenta.saldo || 0),
+      0
+    );
+    console.log("Total Balance Calculado:", totalBalanceCalculado);
+    setTotalBalance(totalBalanceCalculado);
   }, []);
 
   // Configura el saludo del usuario y carga las cuentas al montar el componente
   useEffect(() => {
     const storedUser = localStorage.getItem("user") || "Usuario";
     setUsername(storedUser);
+    console.log("Usuario obtenido:", storedUser);
 
     const hour = new Date().getHours();
-    setGreeting(hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches");
+    const saludo =
+      hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches";
+    setGreeting(saludo);
+    console.log("Saludo configurado:", saludo);
 
     loadAccounts();
   }, [loadAccounts]);
@@ -51,10 +77,14 @@ const Home = () => {
   // Escucha eventos de cambios en cuentas o transacciones para actualizar los datos
   useEffect(() => {
     const handleDataChange = () => {
+      console.log("Evento cuentasChanged/transaccionesChanged capturado.");
       loadAccounts();
     };
     const handleStorageChange = (event) => {
-      if (event.key === "cuentas" || event.key === "transacciones") loadAccounts();
+      console.log("Evento storage capturado:", event.key);
+      if (event.key === "cuentas" || event.key === "transacciones") {
+        loadAccounts();
+      }
     };
 
     window.addEventListener("cuentasChanged", handleDataChange);
@@ -71,6 +101,7 @@ const Home = () => {
   // Genera o actualiza el gráfico cuando las cuentas cambian
   useEffect(() => {
     if (chartRef.current && accounts.length > 0) {
+      console.log("Generando gráfico con cuentas:", accounts);
       generateChart(chartRef.current, accounts);
     }
   }, [accounts]);
